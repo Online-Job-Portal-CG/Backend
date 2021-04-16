@@ -1,8 +1,8 @@
-package com.cg.freelanceapp.dao;
+package com.cg.freelanceapp.service;
 
 import com.cg.freelanceapp.entities.Skill;
 
-public interface ISkillDao {
+public interface ISkillService {
 
 	Skill save(Skill skill);
 
