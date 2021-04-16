@@ -1,14 +1,18 @@
 package com.cg.freelanceapp.service;
 
+import java.util.List;
+
 import com.cg.freelanceapp.entities.Job;
+import com.cg.freelanceapp.entities.Recruiter;
+import com.cg.freelanceapp.entities.Skill;
 
 public interface IJobService {
 
-	Job save(Job job);
+	Job postJob(Skill skill, Recruiter recruiter);
 
 	Job findById(Long id);
 
-	void remove(Job job);
+	List<Job> findJobsBySkill(Skill skill);
 
-	Job update(Job job);
+	void closeJob(Job job);
 }

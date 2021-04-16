@@ -1,13 +1,12 @@
 package com.cg.freelanceapp.service;
 
+import com.cg.freelanceapp.entities.Freelancer;
+import com.cg.freelanceapp.entities.Skill;
 import com.cg.freelanceapp.entities.SkillExperience;
 
 public interface ISkillExperienceService {
 	
-	SkillExperience save(SkillExperience experience);
+	SkillExperience addSkill(Skill skill, Freelancer freelancer, int experienceYears);
 	
-	SkillExperience update(SkillExperience experience);
-	
-	void remove(SkillExperience experience);
-	
+	SkillExperience updateSkillYears(Skill skill, Freelancer freelancer, int experience);
 }

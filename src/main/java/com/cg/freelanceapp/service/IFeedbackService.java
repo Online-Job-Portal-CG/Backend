@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.cg.freelanceapp.entities.Feedback;
 import com.cg.freelanceapp.entities.Freelancer;
+import com.cg.freelanceapp.entities.Recruiter;
 
 public interface IFeedbackService {
-	
-	Feedback save(Feedback feedback);
-	Feedback findById(Long id);
-	Feedback update(Feedback feedback);
+
+	Feedback createFeedback(Recruiter recruiter, Freelancer freelancer, int rating, String review);
+
 	int averageRating(Freelancer freelancer);
+
 	List<Feedback> findFeedbacksByFreelancer(Freelancer freelancer);
 }
