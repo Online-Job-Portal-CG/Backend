@@ -2,14 +2,14 @@ package com.cg.freelanceapp.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.cg.freelanceapp.entities.Feedback;
 import com.cg.freelanceapp.entities.Freelancer;
 
-public interface IFeedbackDao {
-	
-	Feedback save(Feedback feedback);
-	Feedback findById(Long id);
-	Feedback update(Feedback feedback);
-	int averageRating(Freelancer freelancer);
-	List<Feedback> findFeedbacksByFreelancer(Freelancer freelancer);
+@Repository
+public interface IFeedbackDao extends JpaRepository<Feedback, Long>{
+	//int averageRating(Freelancer freelancer);
+	//List<Feedback> findFeedbacksByFreelancer(Freelancer freelancer);
 }

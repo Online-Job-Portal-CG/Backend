@@ -1,12 +1,11 @@
 package com.cg.freelanceapp.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.cg.freelanceapp.entities.Admin;
 
-public interface IAdminDao {
-	
-	Admin save(Admin admin);
+@Repository
+public interface IAdminDao extends JpaRepository<Admin, Long> {
 
-	Admin update(Admin admin);
-
-	Admin findById(Long id);
 }

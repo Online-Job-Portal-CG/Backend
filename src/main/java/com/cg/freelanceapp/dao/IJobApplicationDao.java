@@ -1,12 +1,11 @@
 package com.cg.freelanceapp.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.cg.freelanceapp.entities.JobApplication;
 
-public interface IJobApplicationDao {
+@Repository
+public interface IJobApplicationDao extends JpaRepository<JobApplication, Long>{
 	
-	JobApplication save(JobApplication jobApplication);
-
-	JobApplication update(JobApplication jobApplication);
-
-	void remove(JobApplication jobApplication);
 }
