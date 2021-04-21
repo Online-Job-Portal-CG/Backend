@@ -2,18 +2,20 @@ package com.cg.freelanceapp.service;
 
 import java.util.List;
 
-import com.cg.freelanceapp.entities.BookmarkedFreelancer;
-import com.cg.freelanceapp.entities.Freelancer;
-import com.cg.freelanceapp.entities.Recruiter;
-import com.cg.freelanceapp.entities.Skill;
+import org.springframework.stereotype.Service;
 
+import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
+import com.cg.freelanceapp.entities.BookmarkedFreelancer;
+
+
+@Service
 public interface IBookmarkedFreelancerService {
 
-	BookmarkedFreelancer bookmarkFreelancer(Freelancer freelancer, Skill skill, Recruiter recruiter);
+	BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
 
-	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkill(Skill skill, Recruiter recruiter);
+	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillId(Long id);
 
-	void removeBookmarkedFreelancer(Freelancer freelancer, Skill skill, Recruiter recruiter);
+	void removeBookmarkedFreelancer(BookmarkedFreelancer bookmarkedFreelancer);
 
 	BookmarkedFreelancer findById(Long id);
 
