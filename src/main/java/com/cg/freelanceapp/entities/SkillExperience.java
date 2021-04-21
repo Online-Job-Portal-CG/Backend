@@ -1,5 +1,6 @@
 package com.cg.freelanceapp.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,19 +8,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class SkillExperience {
 
 	@Id
-	@Column(name="skill_exp_id")
+	@Column(name = "skill_exp_id")
 	Long id;
 
 	@OneToOne
 	Skill skill;
 	Integer years;
 
-	@ManyToOne(targetEntity = Freelancer.class)
+	@ManyToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "freelancer_id")
 	Freelancer freelancer;
 

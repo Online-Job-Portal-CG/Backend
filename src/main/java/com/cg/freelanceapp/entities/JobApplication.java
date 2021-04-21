@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class JobApplication {
 	@Id
-	@Column(name="job_app_id")
+	@Column(name = "job_app_id")
 	Long id;
 
 	@ManyToOne(targetEntity = Job.class)

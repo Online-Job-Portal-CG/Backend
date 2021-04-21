@@ -1,12 +1,19 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class Skill {
 
+@Entity
+public class Skill implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="skill_id")
 	Long id;

@@ -1,5 +1,6 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,12 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Freelancer {
+public class Freelancer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "freelancer_id")
+	@Column(name = "freelancer_id", updatable = false)
 	Long id;
+	@Column(updatable = false)
 	String firstName;
+	@Column(updatable = false)
 	String lastName;
+	@Column(updatable = false)
 	String password;
 
 	@OneToMany

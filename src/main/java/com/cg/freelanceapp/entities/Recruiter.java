@@ -1,14 +1,21 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Recruiter {
+public class Recruiter implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "recruiter_id")
@@ -23,7 +30,7 @@ public class Recruiter {
 	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class)
 	List<Feedback> feedbacks;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	List<BookmarkedFreelancer> freelancers;
 
 	public Recruiter() {

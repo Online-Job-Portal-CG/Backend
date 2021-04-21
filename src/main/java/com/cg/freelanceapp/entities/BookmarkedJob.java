@@ -4,23 +4,28 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class BookmarkedJob {
 
 	@Id
-	@Column(name="bkd_job_id")
+	@Column(name = "bkd_job_id", updatable = false)
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "skill_id")
 	Skill skill;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "job_id")
 	Job job;
 
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "freelancer_id")
 	Freelancer freelancer;
 
 	public BookmarkedJob() {

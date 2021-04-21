@@ -2,16 +2,27 @@ package com.cg.freelanceapp.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Admin {
 
 	@Id
-	@Column(name="admin_id")
+	
+	@Column(name = "admin_id", updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "admin_seq")
+	@GenericGenerator(name = "admin_seq", strategy = "increment")
 	Long id;
+	
+	@Column(updatable = false)
 	String firstName;
+	@Column(updatable = false)
 	String lastName;
+	@Column(updatable = false, nullable = false)
 	String password;
 
 	public Admin() {

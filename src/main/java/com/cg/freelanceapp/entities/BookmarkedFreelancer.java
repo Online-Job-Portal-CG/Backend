@@ -1,18 +1,32 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+
+
 @Entity
-public class BookmarkedFreelancer {
+public class BookmarkedFreelancer implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "bkd_fr_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="bkd_fr_seq")
+	@GenericGenerator(name = "bkd_fr_seq", strategy="increment")
+	@Column(name = "bkd_fr_id", updatable = false)
 	Long id;
 
 	@OneToOne
@@ -45,7 +59,7 @@ public class BookmarkedFreelancer {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public Skill getSkill() {
 		return skill;
 	}
@@ -53,7 +67,7 @@ public class BookmarkedFreelancer {
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 	}
-
+	
 	public Freelancer getFreelancer() {
 		return freelancer;
 	}

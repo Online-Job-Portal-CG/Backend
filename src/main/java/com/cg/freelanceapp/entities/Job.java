@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Job {
 	@Id
-	@Column(name="job_id")
+	@Column(name = "job_id")
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

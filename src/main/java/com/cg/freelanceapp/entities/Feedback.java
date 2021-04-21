@@ -3,24 +3,30 @@ package com.cg.freelanceapp.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Feedback {
 
 	@Id
-	@Column(name="feedback_id")
+	@Column(name = "feedback_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="feedback_seq")
+	@GenericGenerator(name = "feedback_seq", strategy="increment")
 	Long id;
 	Integer ranges;
 	String comments;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Recruiter.class)
 	@JoinColumn(name = "recruiter_id")
 	Recruiter createdBy;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Freelancer.class)
 	@JoinColumn(name = "freelancer_id")
 	Freelancer createdFor;
 
