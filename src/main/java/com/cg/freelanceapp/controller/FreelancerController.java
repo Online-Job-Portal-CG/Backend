@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.freelanceapp.dto.FreelancerDTO;
 import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.service.IFreelancerService;
 
@@ -19,8 +20,8 @@ public class FreelancerController {
 	IFreelancerService freelancerService;
 
 	@PostMapping("/add")
-	public ResponseEntity<String> addFreelancer(@RequestBody Freelancer freelancer) {
-		freelancerService.save(freelancer);
+	public ResponseEntity<String> addFreelancer(@RequestBody FreelancerDTO freelancerDto) {
+		freelancerService.save(freelancerDto);
 		return new ResponseEntity<>("Added successfully", HttpStatus.OK);
 	}
 }
