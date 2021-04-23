@@ -6,8 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Recruiter implements Serializable {
@@ -19,26 +23,30 @@ public class Recruiter implements Serializable {
 
 	@Id
 	@Column(name = "recruiter_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "recruiter_seq")
+	@GenericGenerator(name = "recruiter_seq", strategy = "increment")
 	Long id;
 
 	String firstName;
 	String lastName;
 
-	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class)
+	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class, cascade = CascadeType.ALL)
 	List<Job> postedJobs;
 
-	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class)
+	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class, cascade = CascadeType.ALL)
 	List<Feedback> feedbacks;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "bookmarkedBy", cascade = CascadeType.ALL, targetEntity = BookmarkedFreelancer.class)
 	List<BookmarkedFreelancer> freelancers;
 
 	public Recruiter() {
 		super();
 	}
 
-	public Recruiter(Long id, String firstName, String lastName, List<Job> postedJobs, List<Feedback> feedbacks,
-			List<BookmarkedFreelancer> freelancers) {
+	public Recruiter(Long id, String firstName, String lastName
+			,List<Job> postedJobs, List<Feedback> feedbacks,
+			List<BookmarkedFreelancer> freelancers
+			) {
 		super();
 		this.id = id;
 		this.firstName = firstName;

@@ -6,16 +6,22 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Job {
 	@Id
-	@Column(name = "job_id")
+	@Column(name = "job_id", updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "job_seq")
+	@GenericGenerator(name = "job_seq", strategy = "increment")
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -27,11 +33,11 @@ public class Job {
 
 	LocalDate postedDate;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	Freelancer awardedTo;
 
-	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class)
-	List<JobApplication> jobApplications;
+//	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class, cascade = CascadeType.ALL)
+//	List<JobApplication> jobApplications;
 
 	Boolean active;
 
@@ -39,15 +45,16 @@ public class Job {
 		super();
 	}
 
-	public Job(Long id, Skill skill, Recruiter postedBy, LocalDate postedDate, Freelancer awardedTo,
-			List<JobApplication> jobApplications, Boolean active) {
+	public Job(Long id, Skill skill, Recruiter postedBy, LocalDate postedDate, Freelancer awardedTo
+//			, List<JobApplication> jobApplications
+			, Boolean active) {
 		super();
 		this.id = id;
 		this.skill = skill;
 		this.postedBy = postedBy;
 		this.postedDate = postedDate;
 		this.awardedTo = awardedTo;
-		this.jobApplications = jobApplications;
+//		this.jobApplications = jobApplications;
 		this.active = active;
 	}
 
@@ -91,13 +98,13 @@ public class Job {
 		this.awardedTo = awardedTo;
 	}
 
-	public List<JobApplication> getJobApplications() {
-		return jobApplications;
-	}
-
-	public void setJobApplications(List<JobApplication> jobApplications) {
-		this.jobApplications = jobApplications;
-	}
+//	public List<JobApplication> getJobApplications() {
+//		return jobApplications;
+//	}
+//
+//	public void setJobApplications(List<JobApplication> jobApplications) {
+//		this.jobApplications = jobApplications;
+//	}
 
 	public Boolean getActive() {
 		return active;

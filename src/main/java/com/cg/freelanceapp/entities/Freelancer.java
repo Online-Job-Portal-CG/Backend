@@ -3,19 +3,30 @@ package com.cg.freelanceapp.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Freelancer implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8358203589467846311L;
 	@Id
 	@Column(name = "freelancer_id", updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "freelancer_seq")
+	@GenericGenerator(name = "freelancer_seq", strategy = "increment")
 	Long id;
 	@Column(updatable = false)
 	String firstName;
@@ -24,16 +35,16 @@ public class Freelancer implements Serializable {
 	@Column(updatable = false)
 	String password;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	List<JobApplication> appliedJobs;
 
-	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class)
+	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class, cascade = CascadeType.ALL)
 	List<Feedback> feedbacks;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class)
+	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class, cascade = CascadeType.ALL)
 	List<SkillExperience> skills;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class)
+	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class, cascade = CascadeType.ALL)
 	List<BookmarkedJob> bookmarkedJobs;
 
 	public Freelancer() {

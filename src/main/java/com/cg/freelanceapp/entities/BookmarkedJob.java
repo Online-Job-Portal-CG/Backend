@@ -1,12 +1,16 @@
-package com.cg.freelanceapp.entities;
+	package com.cg.freelanceapp.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
@@ -14,6 +18,8 @@ public class BookmarkedJob {
 
 	@Id
 	@Column(name = "bkd_job_id", updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "bkd_job_seq")
+	@GenericGenerator(name = "bkd_job_seq", strategy = "increment")
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

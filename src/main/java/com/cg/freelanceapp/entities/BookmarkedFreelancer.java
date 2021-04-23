@@ -13,10 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-public class BookmarkedFreelancer implements Serializable{
+public class BookmarkedFreelancer implements Serializable {
 
 	/**
 	 * 
@@ -24,20 +25,23 @@ public class BookmarkedFreelancer implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator="bkd_fr_seq")
-	@GenericGenerator(name = "bkd_fr_seq", strategy="increment")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "bkd_fr_seq")
+	@GenericGenerator(name = "bkd_fr_seq", strategy = "increment")
 	@Column(name = "bkd_fr_id", updatable = false)
 	Long id;
 
-	@OneToOne
+	@OneToOne(targetEntity = Skill.class)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Skill skill;
 
-	@OneToOne(cascade = CascadeType.ALL, targetEntity = Freelancer.class)
+	@OneToOne(targetEntity = Freelancer.class)
 	@JoinColumn(name = "freelancer_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Freelancer freelancer;
 
-	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Recruiter.class)
+	@ManyToOne(targetEntity = Recruiter.class)
 	@JoinColumn(name = "recruiter_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	Recruiter bookmarkedBy;
 
 	public BookmarkedFreelancer() {
@@ -59,7 +63,7 @@ public class BookmarkedFreelancer implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Skill getSkill() {
 		return skill;
 	}
@@ -67,7 +71,7 @@ public class BookmarkedFreelancer implements Serializable{
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 	}
-	
+
 	public Freelancer getFreelancer() {
 		return freelancer;
 	}

@@ -3,20 +3,27 @@ package com.cg.freelanceapp.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class SkillExperience {
 
 	@Id
 	@Column(name = "skill_exp_id")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_exp_seq")
+	@GenericGenerator(name = "skill_exp_seq", strategy = "increment")
 	Long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	Skill skill;
+	
 	Integer years;
 
 	@ManyToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
