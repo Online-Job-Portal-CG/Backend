@@ -12,5 +12,7 @@ public interface ISkillService {
 	void remove(Skill skill);
 
 	Skill update(Skill skill);
+	
+	Skill findById(Long id);
 
 }

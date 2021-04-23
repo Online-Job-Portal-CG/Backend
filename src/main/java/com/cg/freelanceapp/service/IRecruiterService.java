@@ -12,5 +12,6 @@ public interface IRecruiterService {
 	Recruiter update(Recruiter recruiter);
 
 	Recruiter findById(Long id);
+	
 
 }

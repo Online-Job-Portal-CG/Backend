@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
+import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 
 
 @Service
@@ -13,10 +14,10 @@ public interface IBookmarkedFreelancerService {
 
 	BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
 
-	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillId(Long id);
+	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillname);
 
-	void removeBookmarkedFreelancer(BookmarkedFreelancer bookmarkedFreelancer);
-
-	BookmarkedFreelancer findById(Long id);
+	BookmarkedFreelancer findById(Long id) throws InvalidBookmarkedFreelancerException;
+	
+	void deleteBookmarkedFreelancerById(Long id);
 
 }
