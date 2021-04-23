@@ -29,4 +29,9 @@ public class SkillServiceImpl implements ISkillService {
 		return skillDao.save(skill);
 	}
 
+	@Override
+	public Skill findById(Long id) {
+		return skillDao.findById(id).get();
+	}
+
 }

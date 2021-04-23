@@ -14,8 +14,19 @@ import com.cg.freelanceapp.entities.BookmarkedFreelancer;
 import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.entities.Recruiter;
 import com.cg.freelanceapp.entities.Skill;
+import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
+import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
+import com.cg.freelanceapp.exceptions.InvalidRecruiterException;
+import com.cg.freelanceapp.exceptions.InvalidSkillException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 
+/**
+ * 
+ * @author Vishnuvardhan Reddy 
+ * Description: This is a service implementation
+ *         		class for the BookmarkedFreelancer Entity
+ *
+ */
 @Service
 public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerService {
 
@@ -31,30 +42,74 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	@Autowired
 	IRecruiterDao recruiterDao;
 
+	/**
+	 * Method: bookmarkFreelancer
+	 * 
+	 * @param bookmarkFreelancerDto
+	 * @throws InvalidBookmarkedFreelancerException, InvalidRecruiterException,
+	 *                                               InvalidSkillException,
+	 *                                               InvalidFreelancerException
+	 *                                               
+	 * Description: This method creates a bookmark of an existing freelancer. 
+	 * 				The recruiter can create a bookmark of the freelancer.
+	 */
 	@Override
 	public BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto) {
 		BookmarkedFreelancer bookmarkedFreelancer = new BookmarkedFreelancer();
-		bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
-		bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
-		bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
+		if (recruiterDao.existsById(bookmarkedFreelancerDto.getRecruiterId())) {
+			bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
+		} else
+			throw new InvalidRecruiterException();
+		if (freelancerDao.existsById(bookmarkedFreelancerDto.getFreelancerId())) {
+			bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
+		} else
+			throw new InvalidFreelancerException();
+		if (skillDao.existsById(bookmarkedFreelancerDto.getSkillId())) {
+			bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
+		} else
+			throw new InvalidSkillException();
+
 		return bookmarkedFreelancerDao.save(bookmarkedFreelancer);
 	}
 
+	/**
+	 * 
+	 * @param skillName
+	 * @throws InvalidBookmarkedFreelancerException Description: The method finds a
+	 *                                              bookmarked freelancer by the
+	 *                                              skill name, and returns a list.
+	 * 
+	 */
 	@Override
-	public List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillId(Long id) {
-		return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkillId(id);
+	public List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillName) {
+		return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkillName(skillName);
 	}
 
-	@Override
-	public void removeBookmarkedFreelancer(BookmarkedFreelancer bookmarkedFreelancer) {
-		// TODO Auto-generated method stub
-
-	}
-
+	/**
+	 * 
+	 * @param id
+	 * @throws InvalidBookmarkedFreelancer Description: The method finds
+	 *                                     BookmarkedFreelancers by their Id, and
+	 *                                     returns a list.
+	 * 
+	 */
 	@Override
 	public BookmarkedFreelancer findById(Long id) {
+		if (bookmarkedFreelancerDao.existsById(id)) {
+			return bookmarkedFreelancerDao.findById(id).get();
+		} else
+			throw new InvalidBookmarkedFreelancerException();
 
-		return bookmarkedFreelancerDao.findById(id).get();
+	}
+
+	@Override
+	public void deleteBookmarkedFreelancerById(Long id) {
+		if (bookmarkedFreelancerDao.existsById(id)) {
+			bookmarkedFreelancerDao.deleteById(id);
+		} else {
+			throw new InvalidBookmarkedFreelancerException();
+		}
+
 	}
 
 }
