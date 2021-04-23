@@ -10,5 +10,5 @@ import com.cg.freelanceapp.entities.Skill;
 
 @Repository
 public interface IBookmarkedFreelancerDao extends JpaRepository<BookmarkedFreelancer, Long> {
-	List<BookmarkedFreelancer> findBookmarkedFreelancerBySkillId(Long id);
+	List<BookmarkedFreelancer> findBookmarkedFreelancerBySkillName(String skillName);
 }

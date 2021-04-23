@@ -7,5 +7,4 @@ import com.cg.freelanceapp.entities.Recruiter;
 
 @Repository
 public interface IRecruiterDao extends JpaRepository<Recruiter, Long>{
-
 }
