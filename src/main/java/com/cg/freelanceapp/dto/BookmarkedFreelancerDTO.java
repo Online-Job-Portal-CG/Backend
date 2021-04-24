@@ -1,9 +1,11 @@
 package com.cg.freelanceapp.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class BookmarkedFreelancerDTO {
-	Long skillId;
-	Long recruiterId;
-	Long freelancerId;
+	private Long skillId;
+	private Long recruiterId;
+	private Long freelancerId;
 
 	public BookmarkedFreelancerDTO() {
 		super();

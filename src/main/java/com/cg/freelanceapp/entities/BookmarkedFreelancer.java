@@ -11,45 +11,50 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+/**
+ * 
+ * @author      Vishnuvardhan Reddy
+ * Description: This is the entity class for BookmarkedFreelancer module
+ *
+ */
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BookmarkedFreelancer implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "bkd_fr_seq")
 	@GenericGenerator(name = "bkd_fr_seq", strategy = "increment")
 	@Column(name = "bkd_fr_id", updatable = false)
-	Long id;
+	private Long id;
 
 	@OneToOne(targetEntity = Skill.class)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	Skill skill;
+	@NotEmpty(message = "Skill id should not be empty.")
+	private Skill skill;
 
 	@OneToOne(targetEntity = Freelancer.class)
 	@JoinColumn(name = "freelancer_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	Freelancer freelancer;
+	@NotEmpty(message = "Freelancer id should not be empty.")
+	private Freelancer freelancer;
 
 	@ManyToOne(targetEntity = Recruiter.class)
 	@JoinColumn(name = "recruiter_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	Recruiter bookmarkedBy;
+	@NotEmpty(message = "Recruiter id should not be empty.")
+	private Recruiter bookmarkedBy;
 
 	public BookmarkedFreelancer() {
 		super();
