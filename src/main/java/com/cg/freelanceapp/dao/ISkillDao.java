@@ -8,4 +8,11 @@ import com.cg.freelanceapp.entities.Skill;
 @Repository
 public interface ISkillDao extends JpaRepository<Skill, Long> {
 
+	/**
+	 * Method: existsByName
+	 * @param  name
+	 * @return boolean
+	 */
+	boolean existsByName(String name);
+
 }
