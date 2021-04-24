@@ -75,9 +75,9 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	/**
 	 * 
 	 * @param skillName
-	 * @throws InvalidBookmarkedFreelancerException Description: The method finds a
-	 *                                              bookmarked freelancer by the
-	 *                                              skill name, and returns a list.
+	 * @throws InvalidBookmarkedFreelancerException 
+	 * 
+	 * Description: The method finds a bookmarked freelancer by the skill name, and returns a list.
 	 * 
 	 */
 	@Override
