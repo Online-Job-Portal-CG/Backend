@@ -6,10 +6,10 @@ import com.cg.freelanceapp.entities.Admin;
 
 @Service
 public interface IAdminService {
+	Admin findById(Long id);
+
 	Admin save(Admin admin);
 
 	Admin update(Admin admin);
-
-	Admin findById(Long id);
 
 }

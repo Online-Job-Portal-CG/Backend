@@ -14,10 +14,10 @@ public interface IBookmarkedJobService {
 
 	BookmarkedJob bookmarkJob(Job job, Freelancer freelancer);
 
-	void remove(Job job, Freelancer freelancer);
+	List<BookmarkedJob> findBookmarkedJobsBySkill(Skill skill, Freelancer freelancer);
 
 	BookmarkedJob findById(Long id);
 
-	List<BookmarkedJob> findBookmarkedJobsBySkill(Skill skill, Freelancer freelancer);
+	void remove(Job job, Freelancer freelancer);
 
 }

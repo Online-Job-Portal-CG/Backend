@@ -1,0 +1,9 @@
+com.cg
+com.cg.freelanceapp.config
+com.cg.freelanceapp.controller
+com.cg.freelanceapp.dao
+com.cg.freelanceapp.dto
+com.cg.freelanceapp.entities
+com.cg.freelanceapp.exceptions
+com.cg.freelanceapp.service
+com.cg.freelanceapp.serviceimpl

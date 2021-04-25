@@ -4,15 +4,28 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
 import com.cg.freelanceapp.entities.Skill;
 
+/**************************************************************************************
+ * @author Vishnuvardhan 
+ * Description: This is the DAO Interface for BookmarkedFreelancer module. 
+ * Created Date: 19 April, 2021 
+ * Version : v1.0.0
+ *************************************************************************************/
 @Repository
 public interface IBookmarkedFreelancerDao extends JpaRepository<BookmarkedFreelancer, Long> {
-	@Query("SELECT bf "
-			+ "FROM BookmarkedFreelancer bf, Skill s "
-			+ "WHERE bf.skill = s")
-	List<BookmarkedFreelancer> findBookmarkedFreelancerBySkill(Skill skill);
+
+	/*******************************************************************************************
+	 * Method:      findBookmarkedFreelancerBySkill
+	 * @param       skill
+	 * @return      List<BookmarkedFreelancer>
+	 * Description: This method returns a list of bookmarked freelancers who have a common skill.
+	 *******************************************************************************************/
+	@Query("SELECT bf FROM Freelancer f, BookmarkedFreelancer bf"
+			+ " WHERE f.id = bf.freelancer.id and bf.skill = :skill")
+	List<BookmarkedFreelancer> findBookmarkedFreelancerBySkill(@Param("skill") Skill skill);
 }

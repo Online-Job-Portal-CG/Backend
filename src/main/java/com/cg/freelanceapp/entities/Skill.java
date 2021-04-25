@@ -10,7 +10,12 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for Skill module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class Skill implements Serializable {
 
@@ -19,7 +24,7 @@ public class Skill implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="skill_id")
+	@Column(name = "skill_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_seq")
 	@GenericGenerator(name = "skill_seq", strategy = "increment")
 	Long id;
@@ -38,28 +43,28 @@ public class Skill implements Serializable {
 		this.description = description;
 	}
 
-	public Long getId() {
-		return id;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

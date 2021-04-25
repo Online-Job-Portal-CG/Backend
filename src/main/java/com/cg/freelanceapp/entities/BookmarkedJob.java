@@ -1,4 +1,4 @@
-	package com.cg.freelanceapp.entities;
+package com.cg.freelanceapp.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +12,12 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for BookmarkedJob module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class BookmarkedJob {
 
@@ -46,36 +51,36 @@ public class BookmarkedJob {
 		this.freelancer = freelancer;
 	}
 
+	public Freelancer getFreelancer() {
+		return freelancer;
+	}
+
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Skill getSkill() {
-		return skill;
-	}
-
-	public void setSkill(Skill skill) {
-		this.skill = skill;
 	}
 
 	public Job getJob() {
 		return job;
 	}
 
-	public void setJob(Job job) {
-		this.job = job;
-	}
-
-	public Freelancer getFreelancer() {
-		return freelancer;
+	public Skill getSkill() {
+		return skill;
 	}
 
 	public void setFreelancer(Freelancer freelancer) {
 		this.freelancer = freelancer;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
 	}
 
 }

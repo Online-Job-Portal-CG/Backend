@@ -1,7 +1,6 @@
 package com.cg.freelanceapp.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,11 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for Job module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class Job {
 	@Id
@@ -58,44 +62,44 @@ public class Job {
 		this.active = active;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Skill getSkill() {
-		return skill;
-	}
-
-	public void setSkill(Skill skill) {
-		this.skill = skill;
-	}
-
-	public Recruiter getPostedBy() {
-		return postedBy;
-	}
-
-	public void setPostedBy(Recruiter postedBy) {
-		this.postedBy = postedBy;
-	}
-
-	public LocalDate getPostedDate() {
-		return postedDate;
-	}
-
-	public void setPostedDate(LocalDate postedDate) {
-		this.postedDate = postedDate;
+	public Boolean getActive() {
+		return active;
 	}
 
 	public Freelancer getAwardedTo() {
 		return awardedTo;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public Recruiter getPostedBy() {
+		return postedBy;
+	}
+
+	public LocalDate getPostedDate() {
+		return postedDate;
+	}
+
+	public Skill getSkill() {
+		return skill;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public void setAwardedTo(Freelancer awardedTo) {
 		this.awardedTo = awardedTo;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setPostedBy(Recruiter postedBy) {
+		this.postedBy = postedBy;
 	}
 
 //	public List<JobApplication> getJobApplications() {
@@ -106,12 +110,12 @@ public class Job {
 //		this.jobApplications = jobApplications;
 //	}
 
-	public Boolean getActive() {
-		return active;
+	public void setPostedDate(LocalDate postedDate) {
+		this.postedDate = postedDate;
 	}
 
-	public void setActive(Boolean active) {
-		this.active = active;
+	public void setSkill(Skill skill) {
+		this.skill = skill;
 	}
 
 }

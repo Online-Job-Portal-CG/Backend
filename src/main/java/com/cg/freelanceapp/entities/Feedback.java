@@ -11,13 +11,19 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for Feedback module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class Feedback {
 
 	@Id
 	@Column(name = "feedback_id")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator="feedback_seq")
-	@GenericGenerator(name = "feedback_seq", strategy="increment")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "feedback_seq")
+	@GenericGenerator(name = "feedback_seq", strategy = "increment")
 	Long id;
 	Integer ranges;
 	String comments;
@@ -43,44 +49,44 @@ public class Feedback {
 		this.createdFor = createdFor;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Integer getRanges() {
-		return ranges;
-	}
-
-	public void setRanges(Integer ranges) {
-		this.ranges = ranges;
-	}
-
 	public String getComments() {
 		return comments;
-	}
-
-	public void setComment(String comments) {
-		this.comments = comments;
 	}
 
 	public Recruiter getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Recruiter createdBy) {
-		this.createdBy = createdBy;
-	}
-
 	public Freelancer getCreatedFor() {
 		return createdFor;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public Integer getRanges() {
+		return ranges;
+	}
+
+	public void setComment(String comments) {
+		this.comments = comments;
+	}
+
+	public void setCreatedBy(Recruiter createdBy) {
+		this.createdBy = createdBy;
+	}
+
 	public void setCreatedFor(Freelancer createdFor) {
 		this.createdFor = createdFor;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setRanges(Integer ranges) {
+		this.ranges = ranges;
 	}
 
 }

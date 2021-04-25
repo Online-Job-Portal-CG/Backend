@@ -8,8 +8,8 @@ import com.cg.freelanceapp.entities.SkillExperience;
 
 @Service
 public interface ISkillExperienceService {
-	
+
 	SkillExperience addSkill(Skill skill, Freelancer freelancer, int experienceYears);
-	
+
 	SkillExperience updateSkillYears(Skill skill, Freelancer freelancer, int experience);
 }

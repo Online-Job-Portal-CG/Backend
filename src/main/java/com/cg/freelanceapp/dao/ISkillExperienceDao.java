@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.freelanceapp.entities.SkillExperience;
 
 @Repository
-public interface ISkillExperienceDao extends JpaRepository<SkillExperience, Long>{
-	
+public interface ISkillExperienceDao extends JpaRepository<SkillExperience, Long> {
+
 }

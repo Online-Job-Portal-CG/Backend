@@ -11,9 +11,9 @@ public interface IJobApplicationService {
 
 	JobApplication applyToJob(Job job, String coverLetter, Freelancer freelancer);
 
-	JobApplication updateJobApplication(Job job, String coverLetter, Freelancer freelancer);
+	JobApplication findById(Long id);
 
 	void remove(Job job, Freelancer freelancer);
-	
-	JobApplication findById(Long id);
+
+	JobApplication updateJobApplication(Job job, String coverLetter, Freelancer freelancer);
 }

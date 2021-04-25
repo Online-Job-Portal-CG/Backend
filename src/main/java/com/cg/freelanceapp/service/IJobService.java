@@ -11,11 +11,11 @@ import com.cg.freelanceapp.entities.Skill;
 @Service
 public interface IJobService {
 
-	Job postJob(Skill skill, Recruiter recruiter);
+	void closeJob(Job job);
 
 	Job findById(Long id);
 
 	List<Job> findJobsBySkill(Skill skill);
 
-	void closeJob(Job job);
+	Job postJob(Skill skill, Recruiter recruiter);
 }

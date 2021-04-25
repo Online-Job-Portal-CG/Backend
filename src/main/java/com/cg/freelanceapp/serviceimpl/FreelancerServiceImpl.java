@@ -8,11 +8,22 @@ import com.cg.freelanceapp.dto.FreelancerDTO;
 import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.service.IFreelancerService;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Service Implementation for Freelancer module. 
+ * Created Date: 21 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Service
 public class FreelancerServiceImpl implements IFreelancerService {
 
 	@Autowired
 	IFreelancerDao freelancerDao;
+
+	@Override
+	public Freelancer findById(Long id) {
+		return freelancerDao.findById(id).get();
+	}
 
 	@Override
 	public Freelancer save(FreelancerDTO freelancerDto) {
@@ -26,11 +37,6 @@ public class FreelancerServiceImpl implements IFreelancerService {
 	@Override
 	public Freelancer update(Freelancer freelancer) {
 		return freelancerDao.save(freelancer);
-	}
-
-	@Override
-	public Freelancer findById(Long id) {
-		return freelancerDao.findById(id).get();
 	}
 
 }

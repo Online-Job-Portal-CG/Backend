@@ -14,7 +14,7 @@ class OnlineJobPortalApplicationTests {
 
 	@Autowired
 	ISkillService skillService;
-	
+
 	@Test
 	void test1() {
 		long id = 7;

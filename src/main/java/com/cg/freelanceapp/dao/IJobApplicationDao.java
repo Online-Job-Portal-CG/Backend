@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.freelanceapp.entities.JobApplication;
 
 @Repository
-public interface IJobApplicationDao extends JpaRepository<JobApplication, Long>{
-	
+public interface IJobApplicationDao extends JpaRepository<JobApplication, Long> {
+
 }

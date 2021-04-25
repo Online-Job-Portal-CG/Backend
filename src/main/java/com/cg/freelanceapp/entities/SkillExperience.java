@@ -12,6 +12,12 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for SkillExperience module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class SkillExperience {
 
@@ -23,7 +29,7 @@ public class SkillExperience {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	Skill skill;
-	
+
 	Integer years;
 
 	@ManyToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
@@ -42,36 +48,36 @@ public class SkillExperience {
 		this.freelancer = freelancer;
 	}
 
-	public Long getId() {
-		return id;
+	public Freelancer getFreelancer() {
+		return freelancer;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getId() {
+		return id;
 	}
 
 	public Skill getSkill() {
 		return skill;
 	}
 
-	public void setSkill(Skill skill) {
-		this.skill = skill;
-	}
-
 	public Integer getYears() {
 		return years;
 	}
 
-	public void setYears(Integer years) {
-		this.years = years;
-	}
-
-	public Freelancer getFreelancer() {
-		return freelancer;
-	}
-
 	public void setFreelancer(Freelancer freelancer) {
 		this.freelancer = freelancer;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
+	public void setYears(Integer years) {
+		this.years = years;
 	}
 
 }

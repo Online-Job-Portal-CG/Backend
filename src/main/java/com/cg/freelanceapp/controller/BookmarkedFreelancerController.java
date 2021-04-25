@@ -25,13 +25,12 @@ import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 
-/**
- * 
+/**************************************************************************************
  * @author Vishnuvardhan 
- * Description: This class is used for bookmarking a freelancer by the recruiter. 
- * Created Date: 18 April, 2021 
+ * Description: This is the rest controller class for BookmarkedFreelancer module. 
+ * Created Date: 20 April, 2021 
  * Version : v1.0.0
- */
+ *************************************************************************************/
 @RestController
 @RequestMapping("/bmark/freelancer")
 public class BookmarkedFreelancerController {
@@ -39,15 +38,17 @@ public class BookmarkedFreelancerController {
 	@Autowired
 	IBookmarkedFreelancerService bookmarkedFreelancerService;
 
-	/**
-	 * 
+	/*****************************************************************************************
+	 * Method      : createBookmark       
 	 * @param        bookmarkedFreelancerDto
-	 * @return       Response Entity of String type
+	 * @throws       The method throws different exceptions based on improperly entered fields
+	 * @return       Response Entity of Object type
 	 * Description : This method creates a new Bookmark of a freelancer.
-	 * @postmapping: <Write about what post mapping means here>
-	 */
+	 * @postmapping: Post mapping requests a body from the user
+	 * 				 which is then persisted onto the database.
+	 ****************************************************************************************/
 	@PostMapping("/add")
-	public ResponseEntity<String> createBookmark(@Valid @RequestBody BookmarkedFreelancerDTO bookmarkedFreelancerDto,
+	public ResponseEntity<Object> createBookmark(@Valid @RequestBody BookmarkedFreelancerDTO bookmarkedFreelancerDto,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
@@ -68,34 +69,60 @@ public class BookmarkedFreelancerController {
 		return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
 	}
 
+	/*************************************************************************************
+	 * Method        : deleteById       
+	 * @param          id
+	 * @throws         InvalidBookmarkedFreelancerException
+	 * @return         Response Entity of Object type
+	 * Description   : This method deletes a bookmark by id 
+	 * @deletemapping: Delete mapping expects a PathVariable to be passed 
+	 *                 which is used to delete the object from the database.
+	 ************************************************************************************/
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
+		try {
+			bookmarkedFreelancerService.deleteBookmarkedFreelancerById(id);
+		} catch (InvalidBookmarkedFreelancerException exception) {
+			throw new InvalidBookmarkedFreelancerException("No bookmark with specified id exists.");
+		}
+		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+	}
+
+	/************************************************************************************
+	 * Method      : getById       
+	 * @param        Id
+	 * @return       Response Entity of Object type
+	 * Description : This method fetches a Bookmarked Freelancer based on the unique id
+	 * @getmapping : Get mapping expects a PathVariable to be passed 
+	 *               which is then used to return the entity object 
+	 *               that is fetched from the database.
+	 ************************************************************************************/
 	@GetMapping("/get/{id}")
 	public ResponseEntity<Object> getById(@Valid @PathVariable Long id) {
 		try {
 			BookmarkedFreelancer bookmark = bookmarkedFreelancerService.findById(id);
 			return new ResponseEntity<>(bookmark, HttpStatus.OK);
-		} catch(InvalidBookmarkedFreelancerException exception) {
+		} catch (InvalidBookmarkedFreelancerException exception) {
 			throw new InvalidBookmarkedFreelancerException("No Bookmark with specified id.");
 		}
 	}
 
+	/**************************************************************************************
+	 * Method      : listFreelancersBySkill       
+	 * @param        skillName
+	 * @return       List<BookmarkedFreelancer>
+	 * Description : This method fetches a list of Bookmarked Freelancers based on the skill name
+	 * @getmapping : Get mapping expects a PathVariable to be passed 
+	 *               which is then used to return the entity object 
+	 *               that is fetched from the database.
+	 *************************************************************************************/
 	@GetMapping("/findBySkill/{skillName}")
 	public List<BookmarkedFreelancer> listFreelancersBySkill(@Valid @PathVariable String skillName) {
 		try {
-			List<BookmarkedFreelancer> bookmarkedFreelancers = bookmarkedFreelancerService.findBookmarkedFreelancersBySkillName(skillName);
-			return bookmarkedFreelancers;
-		}catch(InvalidBookmarkedFreelancerException exception) {
+			return bookmarkedFreelancerService.findBookmarkedFreelancersBySkillName(skillName);
+		} catch (InvalidBookmarkedFreelancerException exception) {
 			throw new InvalidFreelancerException("No bookmarks found for the specified skill name");
 		}
-		
-	}
 
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
-		try {
-			bookmarkedFreelancerService.deleteBookmarkedFreelancerById(id);
-		}catch(InvalidBookmarkedFreelancerException exception) {
-			throw new InvalidBookmarkedFreelancerException("No bookmark with specified id exists.");
-		}
-		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
 }

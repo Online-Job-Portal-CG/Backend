@@ -13,10 +13,16 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for JobApplication module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class JobApplication {
 	@Id
-	@Column(name = "job_app_id", updatable=false)
+	@Column(name = "job_app_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "job_app_seq")
 	@GenericGenerator(name = "job_app_seq", strategy = "increment")
 	Long id;
@@ -41,36 +47,36 @@ public class JobApplication {
 		this.coverLetter = coverLetter;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Job getJob() {
-		return job;
-	}
-
-	public void setJob(Job job) {
-		this.job = job;
-	}
-
 	public LocalDateTime getAppliedDate() {
 		return appliedDate;
-	}
-
-	public void setAppliedDate(LocalDateTime appliedDate) {
-		this.appliedDate = appliedDate;
 	}
 
 	public String getCoverLetter() {
 		return coverLetter;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setAppliedDate(LocalDateTime appliedDate) {
+		this.appliedDate = appliedDate;
+	}
+
 	public void setCoverLetter(String coverLetter) {
 		this.coverLetter = coverLetter;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
 }

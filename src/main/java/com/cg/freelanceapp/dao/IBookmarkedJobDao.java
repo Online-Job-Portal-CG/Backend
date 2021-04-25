@@ -9,8 +9,8 @@ import com.cg.freelanceapp.entities.BookmarkedJob;
 import com.cg.freelanceapp.entities.Skill;
 
 @Repository
-public interface IBookmarkedJobDao extends JpaRepository<BookmarkedJob, Long>{
+public interface IBookmarkedJobDao extends JpaRepository<BookmarkedJob, Long> {
 
 	List<BookmarkedJob> findBookmarkedJobsBySkill(Skill skill);
-	
+
 }

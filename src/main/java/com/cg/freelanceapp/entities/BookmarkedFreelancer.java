@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,12 +20,12 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-/**
- * 
- * @author      Vishnuvardhan Reddy
- * Description: This is the entity class for BookmarkedFreelancer module
- *
- */
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the BookmarkedFreelancer class for Admin module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BookmarkedFreelancer implements Serializable {
@@ -39,7 +38,7 @@ public class BookmarkedFreelancer implements Serializable {
 	@Column(name = "bkd_fr_id", updatable = false)
 	private Long id;
 
-	@OneToOne(targetEntity = Skill.class,cascade = CascadeType.PERSIST)
+	@OneToOne(targetEntity = Skill.class, cascade = CascadeType.PERSIST)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull(message = "Skill id should not be empty.")
 	private Skill skill;
@@ -68,36 +67,42 @@ public class BookmarkedFreelancer implements Serializable {
 		this.bookmarkedBy = bookmarkedBy;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Skill getSkill() {
-		return skill;
-	}
-
-	public void setSkill(Skill skill) {
-		this.skill = skill;
+	public Recruiter getBookmarkedBy() {
+		return bookmarkedBy;
 	}
 
 	public Freelancer getFreelancer() {
 		return freelancer;
 	}
 
-	public void setFreelancer(Freelancer freelancer) {
-		this.freelancer = freelancer;
+	public Long getId() {
+		return id;
 	}
 
-	public Recruiter getBookmarkedBy() {
-		return bookmarkedBy;
+	public Skill getSkill() {
+		return skill;
 	}
 
 	public void setBookmarkedBy(Recruiter bookmarkedBy) {
 		this.bookmarkedBy = bookmarkedBy;
+	}
+
+	public void setFreelancer(Freelancer freelancer) {
+		this.freelancer = freelancer;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
+	@Override
+	public String toString() {
+		return "BookmarkedFreelancer [id=" + id + ", skill=" + skill + ", freelancer=" + freelancer + ", bookmarkedBy="
+				+ bookmarkedBy + "]";
 	}
 
 }

@@ -2,6 +2,12 @@ package com.cg.freelanceapp.dto;
 
 import javax.validation.constraints.NotNull;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the DTO class for BookmarkedFreelancer module. 
+ * Created Date: 21 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 public class BookmarkedFreelancerDTO {
 	@NotNull(message = "skillId cant be null")
 	private Long skillId;
@@ -21,28 +27,28 @@ public class BookmarkedFreelancerDTO {
 		this.freelancerId = freelancerId;
 	}
 
-	public Long getSkillId() {
-		return skillId;
-	}
-
-	public void setSkillId(Long skillId) {
-		this.skillId = skillId;
+	public Long getFreelancerId() {
+		return freelancerId;
 	}
 
 	public Long getRecruiterId() {
 		return recruiterId;
 	}
 
-	public void setRecruiterId(Long recruiterId) {
-		this.recruiterId = recruiterId;
-	}
-
-	public Long getFreelancerId() {
-		return freelancerId;
+	public Long getSkillId() {
+		return skillId;
 	}
 
 	public void setFreelancerId(Long freelancerId) {
 		this.freelancerId = freelancerId;
+	}
+
+	public void setRecruiterId(Long recruiterId) {
+		this.recruiterId = recruiterId;
+	}
+
+	public void setSkillId(Long skillId) {
+		this.skillId = skillId;
 	}
 
 }

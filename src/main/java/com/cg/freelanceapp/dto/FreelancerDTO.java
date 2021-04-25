@@ -1,5 +1,11 @@
 package com.cg.freelanceapp.dto;
 
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the DTO class for Freelancer module. 
+ * Created Date: 21 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 public class FreelancerDTO {
 	private String firstName;
 	private String lastName;
@@ -20,20 +26,20 @@ public class FreelancerDTO {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
 	public String getLastName() {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
 	public String getPassword() {
 		return password;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public void setPassword(String password) {

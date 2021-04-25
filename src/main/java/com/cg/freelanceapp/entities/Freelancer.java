@@ -3,7 +3,6 @@ package com.cg.freelanceapp.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,15 +12,15 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**************************************************************************************
+ * @author       Vishnuvardhan 
+ * Description : This is the Entity class for Freelancer module. 
+ * Created Date: 18 April, 2021 
+ * Version     : v1.0.0
+ *************************************************************************************/
 @Entity
 public class Freelancer implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8358203589467846311L;
 	@Id
 	@Column(name = "freelancer_id", updatable = false)
@@ -64,68 +63,68 @@ public class Freelancer implements Serializable {
 		this.bookmarkedJobs = bookmarkedJobs;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public List<JobApplication> getAppliedJobs() {
 		return appliedJobs;
-	}
-
-	public void setAppliedJobs(List<JobApplication> appliedJobs) {
-		this.appliedJobs = appliedJobs;
-	}
-
-	public List<Feedback> getFeedbacks() {
-		return feedbacks;
-	}
-
-	public void setFeedbacks(List<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
-
-	public List<SkillExperience> getSkills() {
-		return skills;
-	}
-
-	public void setSkills(List<SkillExperience> skills) {
-		this.skills = skills;
 	}
 
 	public List<BookmarkedJob> getBookmarkedJobs() {
 		return bookmarkedJobs;
 	}
 
+	public List<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public List<SkillExperience> getSkills() {
+		return skills;
+	}
+
+	public void setAppliedJobs(List<JobApplication> appliedJobs) {
+		this.appliedJobs = appliedJobs;
+	}
+
 	public void setBookmarkedJobs(List<BookmarkedJob> bookmarkedJobs) {
 		this.bookmarkedJobs = bookmarkedJobs;
+	}
+
+	public void setFeedbacks(List<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setSkills(List<SkillExperience> skills) {
+		this.skills = skills;
 	}
 
 }
