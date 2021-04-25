@@ -14,5 +14,7 @@ public interface ISkillDao extends JpaRepository<Skill, Long> {
 	 * @return boolean
 	 */
 	boolean existsByName(String name);
+	
+	Skill findByName(String name);
 
 }

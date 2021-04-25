@@ -1,10 +1,13 @@
 package com.cg.freelanceapp.dto;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class BookmarkedFreelancerDTO {
+	@NotNull(message = "skillId cant be null")
 	private Long skillId;
+	@NotNull(message = "recruiterId cant be null")
 	private Long recruiterId;
+	@NotNull(message = "freelancerId cant be null")
 	private Long freelancerId;
 
 	public BookmarkedFreelancerDTO() {

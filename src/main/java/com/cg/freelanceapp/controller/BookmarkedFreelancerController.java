@@ -23,6 +23,7 @@ import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
 import com.cg.freelanceapp.exceptions.BookmakedFreelancerValidationException;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
+import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 import com.google.gson.Gson;
 
@@ -81,13 +82,13 @@ public class BookmarkedFreelancerController {
 
 	@GetMapping("/findBySkill/{skillName}")
 	public List<BookmarkedFreelancer> listFreelancersBySkill(@Valid @PathVariable String skillName) {
-		List<BookmarkedFreelancer> bookmarkedFreelancers = bookmarkedFreelancerService.findBookmarkedFreelancersBySkillName(skillName);
-		JSONObject json = new JSONObject( new Gson().toJson(bookmarkedFreelancers));
-		if(json.isEmpty()) {
-			throw new InvalidBookmarkedFreelancerException("No bookmarks found for the specified skill name");
-		}else {
+		try {
+			List<BookmarkedFreelancer> bookmarkedFreelancers = bookmarkedFreelancerService.findBookmarkedFreelancersBySkillName(skillName);
 			return bookmarkedFreelancers;
+		}catch(InvalidBookmarkedFreelancerException exception) {
+			throw new InvalidFreelancerException("No bookmarks found for the specified skill name");
 		}
+		
 	}
 
 	@DeleteMapping("/delete/{id}")

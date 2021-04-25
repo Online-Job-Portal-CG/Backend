@@ -11,6 +11,7 @@ import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dao.ISkillDao;
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
+import com.cg.freelanceapp.entities.Skill;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 
@@ -71,7 +72,8 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	@Override
 	public List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillName) {
 		if(skillDao.existsByName(skillName)) {
-			return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkillName(skillName);
+			Skill skill = skillDao.findByName(skillName);
+			return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkill(skill);
 		}else throw new InvalidBookmarkedFreelancerException();
 	}
 
