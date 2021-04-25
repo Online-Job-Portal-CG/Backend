@@ -36,13 +36,13 @@ public class Recruiter implements Serializable {
 	String firstName;
 	String lastName;
 
-	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class)
 	List<Job> postedJobs;
 
-	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class)
 	List<Feedback> feedbacks;
 
-	@OneToMany(mappedBy = "bookmarkedBy", cascade = CascadeType.ALL, targetEntity = BookmarkedFreelancer.class)
+	@OneToMany(mappedBy = "bookmarkedBy", targetEntity = BookmarkedFreelancer.class)
 	List<BookmarkedFreelancer> freelancers;
 
 	public Recruiter() {

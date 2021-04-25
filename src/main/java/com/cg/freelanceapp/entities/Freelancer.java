@@ -35,16 +35,16 @@ public class Freelancer implements Serializable {
 	@Column(updatable = false)
 	String password;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = JobApplication.class)
 	List<JobApplication> appliedJobs;
 
-	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class)
 	List<Feedback> feedbacks;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class)
 	List<SkillExperience> skills;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class)
 	List<BookmarkedJob> bookmarkedJobs;
 
 	public Freelancer() {

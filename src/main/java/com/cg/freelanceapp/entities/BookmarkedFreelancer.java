@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -39,21 +39,21 @@ public class BookmarkedFreelancer implements Serializable {
 	@Column(name = "bkd_fr_id", updatable = false)
 	private Long id;
 
-	@OneToOne(targetEntity = Skill.class)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotEmpty(message = "Skill id should not be empty.")
+	@OneToOne(targetEntity = Skill.class,cascade = CascadeType.ALL)
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+	@NotNull(message = "Skill id should not be empty.")
 	private Skill skill;
 
-	@OneToOne(targetEntity = Freelancer.class)
+	@OneToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "freelancer_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotEmpty(message = "Freelancer id should not be empty.")
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+	@NotNull(message = "Freelancer id should not be empty.")
 	private Freelancer freelancer;
 
-	@ManyToOne(targetEntity = Recruiter.class)
+	@ManyToOne(targetEntity = Recruiter.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "recruiter_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotEmpty(message = "Recruiter id should not be empty.")
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+	@NotNull(message = "Recruiter id should not be empty.")
 	private Recruiter bookmarkedBy;
 
 	public BookmarkedFreelancer() {

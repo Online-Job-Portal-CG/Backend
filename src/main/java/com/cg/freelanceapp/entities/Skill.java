@@ -23,6 +23,7 @@ public class Skill implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_seq")
 	@GenericGenerator(name = "skill_seq", strategy = "increment")
 	Long id;
+	@Column(unique = true)
 	String name;
 	String description;
 
