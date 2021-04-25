@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dao.IRecruiterDao;
+import com.cg.freelanceapp.dto.RecruiterDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 import com.cg.freelanceapp.service.IRecruiterService;
 
@@ -14,7 +15,10 @@ public class RecruiterServiceImpl implements IRecruiterService {
 	IRecruiterDao recruiterDao;
 
 	@Override
-	public Recruiter save(Recruiter recruiter) {
+	public Recruiter save(RecruiterDTO recruiterDto) {
+		Recruiter recruiter = new Recruiter();
+		recruiter.setFirstName(recruiterDto.getFirstName());
+		recruiter.setLastName(recruiterDto.getLastName());
 		return recruiterDao.save(recruiter);
 	}
 

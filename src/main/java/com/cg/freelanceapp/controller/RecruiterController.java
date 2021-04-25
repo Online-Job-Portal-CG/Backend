@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.cg.freelanceapp.dto.RecruiterDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,8 +24,8 @@ public class RecruiterController {
 	IRecruiterService recruiterService;
 
 	@PostMapping("/add")
-	public ResponseEntity<String> addRecruiter(@RequestBody Recruiter recruiter) {
-		recruiterService.save(recruiter);
+	public ResponseEntity<String> addRecruiter(@RequestBody RecruiterDTO recruiterDto) {
+		recruiterService.save(recruiterDto);
 		return new ResponseEntity<>("Added successfully", HttpStatus.OK);
 	}
 
