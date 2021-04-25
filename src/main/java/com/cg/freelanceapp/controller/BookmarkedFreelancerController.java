@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,6 @@ import com.cg.freelanceapp.exceptions.BookmakedFreelancerValidationException;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
-import com.google.gson.Gson;
 
 /**
  * 
