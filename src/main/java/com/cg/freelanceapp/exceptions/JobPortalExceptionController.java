@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class JobPortalController {
+public class JobPortalExceptionController {
 
 	@ExceptionHandler(value = InvalidBookmarkedFreelancerException.class)
 	public ResponseEntity<Object> handleException(InvalidBookmarkedFreelancerException exception) {
@@ -21,5 +21,10 @@ public class JobPortalController {
 	@ExceptionHandler(value = InvalidRecruiterException.class)
 	public ResponseEntity<Object> handleException(InvalidRecruiterException exception) {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = BookmakedFreelancerValidationException.class)
+	public ResponseEntity<Object> handleException(BookmakedFreelancerValidationException exception) {
+		return new ResponseEntity<>(exception.getMessages(), HttpStatus.BAD_REQUEST);
 	}
 }
