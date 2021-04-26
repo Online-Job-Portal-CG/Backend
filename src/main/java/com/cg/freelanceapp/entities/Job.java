@@ -1,5 +1,6 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -11,8 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
@@ -21,11 +21,14 @@ import org.hibernate.annotations.GenericGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
-public class Job {
+public class Job implements Serializable {
+
+	private static final long serialVersionUID = -7946011744287965252L;
+
 	@Id
 	@Column(name = "job_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "job_seq")
-	@GenericGenerator(name = "job_seq", strategy = "increment")
+	@SequenceGenerator(name = "job_seq", sequenceName = "job_seq", allocationSize = 1)
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

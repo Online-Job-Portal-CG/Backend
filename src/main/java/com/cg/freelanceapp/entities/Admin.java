@@ -1,12 +1,14 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
-import org.hibernate.annotations.GenericGenerator;
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Admin module. 
@@ -14,13 +16,14 @@ import org.hibernate.annotations.GenericGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
-public class Admin {
+public class Admin implements Serializable {
+
+	private static final long serialVersionUID = -3376723589710738177L;
 
 	@Id
-
 	@Column(name = "admin_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "admin_seq")
-	@GenericGenerator(name = "admin_seq", strategy = "increment")
+	@SequenceGenerator(name = "admin_seq", sequenceName = "admin_seq", allocationSize = 1)
 	Long id;
 
 	@Column(updatable = false)

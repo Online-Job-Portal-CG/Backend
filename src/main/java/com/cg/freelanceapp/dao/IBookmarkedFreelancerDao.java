@@ -28,4 +28,14 @@ public interface IBookmarkedFreelancerDao extends JpaRepository<BookmarkedFreela
 	@Query("SELECT bf FROM Freelancer f, BookmarkedFreelancer bf"
 			+ " WHERE f.id = bf.freelancer.id and bf.skill = :skill")
 	List<BookmarkedFreelancer> findBookmarkedFreelancerBySkill(@Param("skill") Skill skill);
+
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Query(value = "select bkd_fr_seq.currval from dual", nativeQuery = true)
+	Long getCurrentSeriesId();
+
 }

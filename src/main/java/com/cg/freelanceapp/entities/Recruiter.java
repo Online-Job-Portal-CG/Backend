@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,16 +23,13 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Recruiter implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5589762242678036127L;
 
 	@Id
 	@Column(name = "recruiter_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "recruiter_seq")
-	@GenericGenerator(name = "recruiter_seq", strategy = "increment")
+	@SequenceGenerator(name = "recruiter_seq", sequenceName = "recruiter_seq", allocationSize = 1)
 	Long id;
 
 	String firstName;

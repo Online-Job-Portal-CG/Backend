@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
@@ -25,7 +24,7 @@ public class Freelancer implements Serializable {
 	@Id
 	@Column(name = "freelancer_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "freelancer_seq")
-	@GenericGenerator(name = "freelancer_seq", strategy = "increment")
+	@SequenceGenerator(name = "freelancer_seq", sequenceName = "freelancer_seq", allocationSize = 1)
 	Long id;
 	@Column(updatable = false)
 	String firstName;

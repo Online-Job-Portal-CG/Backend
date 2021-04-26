@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
@@ -19,14 +18,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Skill implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8190256392493481389L;
 	@Id
 	@Column(name = "skill_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_seq")
-	@GenericGenerator(name = "skill_seq", strategy = "increment")
+	@SequenceGenerator(name = "skill_seq", sequenceName = "skill_seq", allocationSize = 1)
 	Long id;
 	@Column(unique = true)
 	String name;

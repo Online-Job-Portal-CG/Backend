@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
@@ -18,12 +19,13 @@ import org.hibernate.annotations.GenericGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
-public class Feedback {
+public class Feedback implements Serializable {
 
+	private static final long serialVersionUID = -4183773630437671124L;
 	@Id
 	@Column(name = "feedback_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "feedback_seq")
-	@GenericGenerator(name = "feedback_seq", strategy = "increment")
+	@SequenceGenerator(name = "feedback_seq", sequenceName = "feedback_seq", allocationSize = 1)
 	Long id;
 	Integer ranges;
 	String comments;

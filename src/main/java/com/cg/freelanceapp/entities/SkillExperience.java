@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.SequenceGenerator;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
@@ -19,12 +20,14 @@ import org.hibernate.annotations.GenericGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
-public class SkillExperience {
+public class SkillExperience implements Serializable {
+
+	private static final long serialVersionUID = -8047471705942110842L;
 
 	@Id
 	@Column(name = "skill_exp_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_exp_seq")
-	@GenericGenerator(name = "skill_exp_seq", strategy = "increment")
+	@SequenceGenerator(name = "skill_exp_seq", sequenceName = "skill_exp_seq", allocationSize = 1)
 	Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)

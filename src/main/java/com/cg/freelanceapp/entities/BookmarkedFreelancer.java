@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -30,11 +30,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class BookmarkedFreelancer implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 9145091598260400574L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "bkd_fr_seq")
-	@GenericGenerator(name = "bkd_fr_seq", strategy = "increment")
+	@SequenceGenerator(name = "bkd_fr_seq", sequenceName = "bkd_fr_seq", allocationSize = 1)
 	@Column(name = "bkd_fr_id", updatable = false)
 	private Long id;
 
