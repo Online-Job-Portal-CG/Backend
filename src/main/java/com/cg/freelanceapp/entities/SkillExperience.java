@@ -43,9 +43,8 @@ public class SkillExperience implements Serializable {
 		super();
 	}
 
-	public SkillExperience(Long id, Skill skill, Integer years, Freelancer freelancer) {
+	public SkillExperience(Skill skill, Integer years, Freelancer freelancer) {
 		super();
-		this.id = id;
 		this.skill = skill;
 		this.years = years;
 		this.freelancer = freelancer;

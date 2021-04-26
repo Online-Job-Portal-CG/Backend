@@ -46,9 +46,8 @@ public class BookmarkedJob implements Serializable {
 		super();
 	}
 
-	public BookmarkedJob(Long id, Skill skill, Job job, Freelancer freelancer) {
+	public BookmarkedJob(Skill skill, Job job, Freelancer freelancer) {
 		super();
-		this.id = id;
 		this.skill = skill;
 		this.job = job;
 		this.freelancer = freelancer;

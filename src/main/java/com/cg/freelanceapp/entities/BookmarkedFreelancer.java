@@ -59,9 +59,10 @@ public class BookmarkedFreelancer implements Serializable {
 		super();
 	}
 
-	public BookmarkedFreelancer(Long id, Skill skill, Freelancer freelancer, Recruiter bookmarkedBy) {
+	public BookmarkedFreelancer(@NotNull(message = "Skill id should not be empty.") Skill skill,
+			@NotNull(message = "Freelancer id should not be empty.") Freelancer freelancer,
+			@NotNull(message = "Recruiter id should not be empty.") Recruiter bookmarkedBy) {
 		super();
-		this.id = id;
 		this.skill = skill;
 		this.freelancer = freelancer;
 		this.bookmarkedBy = bookmarkedBy;

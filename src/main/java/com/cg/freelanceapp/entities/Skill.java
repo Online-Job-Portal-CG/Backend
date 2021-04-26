@@ -32,9 +32,8 @@ public class Skill implements Serializable {
 		super();
 	}
 
-	public Skill(Long id, String name, String description) {
+	public Skill(String name, String description) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 	}

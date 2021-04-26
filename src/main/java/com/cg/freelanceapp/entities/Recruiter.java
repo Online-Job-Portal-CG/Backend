@@ -48,10 +48,9 @@ public class Recruiter implements Serializable {
 		super();
 	}
 
-	public Recruiter(Long id, String firstName, String lastName, List<Job> postedJobs, List<Feedback> feedbacks,
+	public Recruiter(String firstName, String lastName, List<Job> postedJobs, List<Feedback> feedbacks,
 			List<BookmarkedFreelancer> freelancers) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.postedJobs = postedJobs;

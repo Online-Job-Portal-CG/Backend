@@ -49,10 +49,9 @@ public class Freelancer implements Serializable {
 		super();
 	}
 
-	public Freelancer(Long id, String firstName, String lastName, String password, List<JobApplication> appliedJobs,
+	public Freelancer(String firstName, String lastName, String password, List<JobApplication> appliedJobs,
 			List<Feedback> feedbacks, List<SkillExperience> skills, List<BookmarkedJob> bookmarkedJobs) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;

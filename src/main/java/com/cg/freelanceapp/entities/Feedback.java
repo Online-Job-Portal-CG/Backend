@@ -42,9 +42,8 @@ public class Feedback implements Serializable {
 		super();
 	}
 
-	public Feedback(Long id, Integer ranges, String comments, Recruiter createdBy, Freelancer createdFor) {
+	public Feedback(Integer ranges, String comments, Recruiter createdBy, Freelancer createdFor) {
 		super();
-		this.id = id;
 		this.ranges = ranges;
 		this.comments = comments;
 		this.createdBy = createdBy;

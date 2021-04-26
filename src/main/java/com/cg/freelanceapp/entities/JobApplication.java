@@ -20,7 +20,7 @@ import javax.persistence.SequenceGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
-public class JobApplication implements Serializable{
+public class JobApplication implements Serializable {
 
 	private static final long serialVersionUID = -3361518011946574802L;
 
@@ -42,9 +42,8 @@ public class JobApplication implements Serializable{
 		super();
 	}
 
-	public JobApplication(Long id, Job job, LocalDateTime appliedDate, String coverLetter) {
+	public JobApplication(Job job, LocalDateTime appliedDate, String coverLetter) {
 		super();
-		this.id = id;
 		this.job = job;
 		this.appliedDate = appliedDate;
 		this.coverLetter = coverLetter;
