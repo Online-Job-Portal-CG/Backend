@@ -2,6 +2,7 @@ package com.cg.freelanceapp.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dto.RecruiterDTO;
@@ -15,6 +16,7 @@ import com.cg.freelanceapp.service.IRecruiterService;
  * Version     : v1.0.0
  *************************************************************************************/
 @Service
+@Transactional
 public class RecruiterServiceImpl implements IRecruiterService {
 
 	@Autowired
@@ -36,6 +38,17 @@ public class RecruiterServiceImpl implements IRecruiterService {
 	@Override
 	public Recruiter update(Recruiter recruiter) {
 		return recruiterDao.save(recruiter);
+	}
+	
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Override
+	public Long getCurrentId() {
+		return recruiterDao.getCurrentSeriesId();
 	}
 
 }

@@ -2,6 +2,7 @@ package com.cg.freelanceapp.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dto.FreelancerDTO;
@@ -15,6 +16,7 @@ import com.cg.freelanceapp.service.IFreelancerService;
  * Version     : v1.0.0
  *************************************************************************************/
 @Service
+@Transactional
 public class FreelancerServiceImpl implements IFreelancerService {
 
 	@Autowired
@@ -37,6 +39,17 @@ public class FreelancerServiceImpl implements IFreelancerService {
 	@Override
 	public Freelancer update(Freelancer freelancer) {
 		return freelancerDao.save(freelancer);
+	}
+	
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Override
+	public Long getCurrentId() {
+		return freelancerDao.getCurrentSeriesId();
 	}
 
 }

@@ -2,6 +2,7 @@ package com.cg.freelanceapp.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.ISkillDao;
 import com.cg.freelanceapp.entities.Skill;
@@ -14,6 +15,7 @@ import com.cg.freelanceapp.service.ISkillService;
  * Version     : v1.0.0
  *************************************************************************************/
 @Service
+@Transactional
 public class SkillServiceImpl implements ISkillService {
 
 	@Autowired
@@ -38,6 +40,17 @@ public class SkillServiceImpl implements ISkillService {
 	@Override
 	public Skill update(Skill skill) {
 		return skillDao.save(skill);
+	}
+	
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Override
+	public Long getCurrentId() {
+		return skillDao.getCurrentSeriesId();
 	}
 
 }

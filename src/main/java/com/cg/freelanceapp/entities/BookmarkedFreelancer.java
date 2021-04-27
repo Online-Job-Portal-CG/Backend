@@ -38,18 +38,18 @@ public class BookmarkedFreelancer implements Serializable {
 	@Column(name = "bkd_fr_id", updatable = false)
 	private Long id;
 
-	@OneToOne(targetEntity = Skill.class, cascade = CascadeType.PERSIST)
+	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull(message = "Skill id should not be empty.")
 	private Skill skill;
 
-	@OneToOne(targetEntity = Freelancer.class, cascade = CascadeType.PERSIST)
+	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "freelancer_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull(message = "Freelancer id should not be empty.")
 	private Freelancer freelancer;
 
-	@ManyToOne(targetEntity = Recruiter.class, cascade = CascadeType.PERSIST)
+	@ManyToOne(targetEntity = Recruiter.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "recruiter_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@NotNull(message = "Recruiter id should not be empty.")
@@ -98,12 +98,6 @@ public class BookmarkedFreelancer implements Serializable {
 
 	public void setSkill(Skill skill) {
 		this.skill = skill;
-	}
-
-	@Override
-	public String toString() {
-		return "BookmarkedFreelancer [id=" + id + ", skill=" + skill + ", freelancer=" + freelancer + ", bookmarkedBy="
-				+ bookmarkedBy + "]";
 	}
 
 }

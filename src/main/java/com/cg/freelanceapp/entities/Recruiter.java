@@ -3,6 +3,7 @@ package com.cg.freelanceapp.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,13 +36,13 @@ public class Recruiter implements Serializable {
 	String firstName;
 	String lastName;
 
-	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class)
+	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	List<Job> postedJobs;
 
-	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class)
+	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	List<Feedback> feedbacks;
 
-	@OneToMany(mappedBy = "bookmarkedBy", targetEntity = BookmarkedFreelancer.class)
+	@OneToMany(mappedBy = "bookmarkedBy", targetEntity = BookmarkedFreelancer.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	List<BookmarkedFreelancer> freelancers;
 
 	public Recruiter() {

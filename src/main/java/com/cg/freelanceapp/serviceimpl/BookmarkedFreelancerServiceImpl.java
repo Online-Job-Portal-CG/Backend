@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IBookmarkedFreelancerDao;
 import com.cg.freelanceapp.dao.IFreelancerDao;
@@ -22,6 +23,7 @@ import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
  * Version     : v1.0.0
  *************************************************************************************/
 @Service
+@Transactional
 public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerService {
 
 	@Autowired
@@ -46,7 +48,9 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	 ****************************************************************************/
 	@Override
 	public BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto) {
+
 		BookmarkedFreelancer bookmarkedFreelancer = new BookmarkedFreelancer();
+
 		if (recruiterDao.existsById(bookmarkedFreelancerDto.getRecruiterId())
 				&& freelancerDao.existsById(bookmarkedFreelancerDto.getFreelancerId())
 				&& skillDao.existsById(bookmarkedFreelancerDto.getSkillId())) {
@@ -108,6 +112,26 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 		} else
 			throw new InvalidBookmarkedFreelancerException();
 
+	}
+
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Override
+	public Long getCurrentId() {
+		return bookmarkedFreelancerDao.getCurrentSeriesId();
+	}
+
+	@Override
+	public BookmarkedFreelancer save(BookmarkedFreelancerDTO bookmarkedFreelancerDto) {
+		BookmarkedFreelancer bookmarkedFreelancer = new BookmarkedFreelancer();
+		bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
+		bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
+		bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
+		return bookmarkedFreelancerDao.save(bookmarkedFreelancer);
 	}
 
 }

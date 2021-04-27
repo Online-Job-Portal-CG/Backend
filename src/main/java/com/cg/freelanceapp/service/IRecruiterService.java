@@ -20,4 +20,5 @@ public interface IRecruiterService {
 
 	Recruiter update(Recruiter recruiter);
 
+	Long getCurrentId();
 }

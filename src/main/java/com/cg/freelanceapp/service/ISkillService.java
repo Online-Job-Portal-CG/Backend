@@ -20,5 +20,7 @@ public interface ISkillService {
 	Skill save(Skill skill);
 
 	Skill update(Skill skill);
+	
+	Long getCurrentId();
 
 }

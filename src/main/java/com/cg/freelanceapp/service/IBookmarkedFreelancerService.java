@@ -19,10 +19,14 @@ public interface IBookmarkedFreelancerService {
 
 	BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
 
+	BookmarkedFreelancer save(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
+
 	void deleteBookmarkedFreelancerById(Long id);
 
 	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillname);
 
 	BookmarkedFreelancer findById(Long id) throws InvalidBookmarkedFreelancerException;
+
+	Long getCurrentId();
 
 }

@@ -19,4 +19,6 @@ public interface IFreelancerService {
 	Freelancer save(FreelancerDTO freelancerDto);
 
 	Freelancer update(Freelancer freelancer);
+	
+	Long getCurrentId();
 }
