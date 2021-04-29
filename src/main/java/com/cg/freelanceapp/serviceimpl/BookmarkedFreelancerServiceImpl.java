@@ -18,7 +18,7 @@ import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
- * Description : This is the Service Implementation for BookmarkedFreelancer module. 
+ * Description : This is the Service Implementation for BookmarkedFreelancer module.	 
  * Created Date: 21 April, 2021 
  * Version     : v1.0.0
  *************************************************************************************/
