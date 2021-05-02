@@ -16,13 +16,23 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class JobPortalExceptionController {
 
-	@ExceptionHandler(value = BookmakedFreelancerValidationException.class)
-	public ResponseEntity<Object> handleException(BookmakedFreelancerValidationException exception) {
-		return new ResponseEntity<>(exception.getMessages(), HttpStatus.BAD_REQUEST);
+	@ExceptionHandler(value = InvalidAdminException.class)
+	public ResponseEntity<Object> handleException(InvalidAdminException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = InvalidBookmarkedFreelancerException.class)
 	public ResponseEntity<Object> handleException(InvalidBookmarkedFreelancerException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = InvalidBookmarkedJobException.class)
+	public ResponseEntity<Object> handleException(InvalidBookmarkedJobException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = InvalidFeedbackException.class)
+	public ResponseEntity<Object> handleException(InvalidFeedbackException exception) {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 
@@ -31,8 +41,33 @@ public class JobPortalExceptionController {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(value = InvalidJobApplicationException.class)
+	public ResponseEntity<Object> handleException(InvalidJobApplicationException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = InvalidJobException.class)
+	public ResponseEntity<Object> handleException(InvalidJobException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
 	@ExceptionHandler(value = InvalidRecruiterException.class)
 	public ResponseEntity<Object> handleException(InvalidRecruiterException exception) {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = InvalidSkillException.class)
+	public ResponseEntity<Object> handleException(InvalidSkillException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = InvalidSkillExperienceException.class)
+	public ResponseEntity<Object> handleException(InvalidSkillExperienceException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(value = JobPortalValidationException.class)
+	public ResponseEntity<Object> handleException(JobPortalValidationException exception) {
+		return new ResponseEntity<>(exception.getMessages(), HttpStatus.BAD_REQUEST);
 	}
 }
