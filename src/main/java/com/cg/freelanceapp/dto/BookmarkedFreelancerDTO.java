@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
  * Version     : v1.0.0
  *************************************************************************************/
 public class BookmarkedFreelancerDTO {
+	
 	@NotNull(message = "skillId cant be null")
 	private Long skillId;
 	@NotNull(message = "recruiterId cant be null")

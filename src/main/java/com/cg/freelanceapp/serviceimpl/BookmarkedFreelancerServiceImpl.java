@@ -54,9 +54,11 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 		if (recruiterDao.existsById(bookmarkedFreelancerDto.getRecruiterId())
 				&& freelancerDao.existsById(bookmarkedFreelancerDto.getFreelancerId())
 				&& skillDao.existsById(bookmarkedFreelancerDto.getSkillId())) {
+
 			bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
 			bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
 			bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
+
 			return bookmarkedFreelancerDao.save(bookmarkedFreelancer);
 		} else
 			throw new InvalidBookmarkedFreelancerException();
@@ -92,7 +94,9 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	@Override
 	public List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillName) {
 		if (skillDao.existsByName(skillName)) {
+
 			Skill skill = skillDao.findByName(skillName);
+
 			return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkill(skill);
 		} else
 			throw new InvalidBookmarkedFreelancerException();

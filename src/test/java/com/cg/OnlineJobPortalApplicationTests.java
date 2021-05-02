@@ -8,11 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.dto.FreelancerDTO;
-import com.cg.freelanceapp.dto.RecruiterDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
-import com.cg.freelanceapp.entities.Freelancer;
-import com.cg.freelanceapp.entities.Recruiter;
-import com.cg.freelanceapp.entities.Skill;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 import com.cg.freelanceapp.service.IFreelancerService;
 import com.cg.freelanceapp.service.IRecruiterService;
