@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Feedback module. 
@@ -19,6 +22,7 @@ import javax.persistence.SequenceGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Feedback implements Serializable {
 
 	private static final long serialVersionUID = -4183773630437671124L;

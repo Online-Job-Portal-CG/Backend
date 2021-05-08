@@ -9,15 +9,19 @@ package com.cg.freelanceapp.dto;
 public class FeedbackDTO {
 	Integer ranges;
 	String comments;
+	Long recruiterId;
+	Long freelancerId;
 
 	public FeedbackDTO() {
 		super();
 	}
 
-	public FeedbackDTO(Integer ranges, String comments) {
+	public FeedbackDTO(Integer ranges, String comments, Long recruiterId, Long freelancerId) {
 		super();
 		this.ranges = ranges;
 		this.comments = comments;
+		this.recruiterId = recruiterId;
+		this.freelancerId = freelancerId;
 	}
 
 	public Integer getRanges() {
@@ -34,6 +38,22 @@ public class FeedbackDTO {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public Long getRecruiterId() {
+		return recruiterId;
+	}
+
+	public void setRecruiterId(Long recruiterId) {
+		this.recruiterId = recruiterId;
+	}
+
+	public Long getFreelancerId() {
+		return freelancerId;
+	}
+
+	public void setFreelancerId(Long freelancerId) {
+		this.freelancerId = freelancerId;
 	}
 
 }
