@@ -25,7 +25,7 @@ public interface IBookmarkedFreelancerService {
 
 	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillname);
 
-	BookmarkedFreelancer findById(Long id) throws InvalidBookmarkedFreelancerException;
+	BookmarkedFreelancer findById(Long id);
 
 	Long getCurrentId();
 

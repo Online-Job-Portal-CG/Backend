@@ -4,20 +4,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cg.freelanceapp.dto.BookmarkedJobDTO;
 import com.cg.freelanceapp.entities.BookmarkedJob;
-import com.cg.freelanceapp.entities.Freelancer;
-import com.cg.freelanceapp.entities.Job;
-import com.cg.freelanceapp.entities.Skill;
+import com.cg.freelanceapp.exceptions.InvalidBookmarkedJobException;
 
 @Service
 public interface IBookmarkedJobService {
 
-	BookmarkedJob bookmarkJob(Job job, Freelancer freelancer);
+	BookmarkedJob bookmarkJob(BookmarkedJobDTO bookmarkedJobDto);
 
-	List<BookmarkedJob> findBookmarkedJobsBySkill(Skill skill, Freelancer freelancer);
+	BookmarkedJob save(BookmarkedJobDTO bookmarkedJobDto);
 
-	BookmarkedJob findById(Long id);
+	void deleteBookmarkedJobById(Long id);
 
-	void remove(Job job, Freelancer freelancer);
+	List<BookmarkedJob> findBookmarkedJobsBySkillName(String skillname);
+
+	BookmarkedJob findById(Long id) throws InvalidBookmarkedJobException;
+
 
 }

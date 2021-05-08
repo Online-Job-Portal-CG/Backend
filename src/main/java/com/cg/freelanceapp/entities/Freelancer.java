@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Freelancer module. 
@@ -19,6 +22,7 @@ import javax.persistence.SequenceGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Freelancer implements Serializable {
 
 	private static final long serialVersionUID = -8358203589467846311L;
