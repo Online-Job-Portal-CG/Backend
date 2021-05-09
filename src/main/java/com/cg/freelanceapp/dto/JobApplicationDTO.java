@@ -24,28 +24,28 @@ public class JobApplicationDTO {
 		this.coverLetter = coverLetter;
 	}
 
-	public Long getJobId() {
-		return jobId;
-	}
-
-	public void setJobId(Long jobId) {
-		this.jobId = jobId;
-	}
-
 	public LocalDate getAppliedDate() {
 		return appliedDate;
-	}
-
-	public void setAppliedDate(LocalDate appliedDate) {
-		this.appliedDate = appliedDate;
 	}
 
 	public String getCoverLetter() {
 		return coverLetter;
 	}
 
+	public Long getJobId() {
+		return jobId;
+	}
+
+	public void setAppliedDate(LocalDate appliedDate) {
+		this.appliedDate = appliedDate;
+	}
+
 	public void setCoverLetter(String coverLetter) {
 		this.coverLetter = coverLetter;
+	}
+
+	public void setJobId(Long jobId) {
+		this.jobId = jobId;
 	}
 
 }

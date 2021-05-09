@@ -31,6 +31,17 @@ public class RecruiterServiceImpl implements IRecruiterService {
 			throw new InvalidRecruiterException();
 	}
 
+	/*******************************************************************************************
+	 * Method:      getCurrentSeriesId
+	 * @param       none
+	 * @return      Long
+	 * Description: This method returns the current value of primary key from the sequence.
+	 *******************************************************************************************/
+	@Override
+	public Long getCurrentId() {
+		return recruiterDao.getCurrentSeriesId();
+	}
+
 	@Override
 	public Recruiter save(RecruiterDTO recruiterDto) {
 		Recruiter recruiter = new Recruiter();
@@ -48,17 +59,6 @@ public class RecruiterServiceImpl implements IRecruiterService {
 			return recruiterDao.save(recruiter);
 		} else
 			throw new InvalidRecruiterException();
-	}
-
-	/*******************************************************************************************
-	 * Method:      getCurrentSeriesId
-	 * @param       none
-	 * @return      Long
-	 * Description: This method returns the current value of primary key from the sequence.
-	 *******************************************************************************************/
-	@Override
-	public Long getCurrentId() {
-		return recruiterDao.getCurrentSeriesId();
 	}
 
 }

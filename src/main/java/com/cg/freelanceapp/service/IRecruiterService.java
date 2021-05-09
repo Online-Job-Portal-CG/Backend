@@ -16,9 +16,9 @@ public interface IRecruiterService {
 
 	Recruiter findById(Long id);
 
+	Long getCurrentId();
+
 	Recruiter save(RecruiterDTO recruiterdto);
 
 	Recruiter update(Long id, RecruiterDTO recruiterDto);
-
-	Long getCurrentId();
 }

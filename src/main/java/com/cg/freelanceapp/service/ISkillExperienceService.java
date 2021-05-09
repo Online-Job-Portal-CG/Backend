@@ -10,9 +10,9 @@ import com.cg.freelanceapp.entities.SkillExperience;
 
 public interface ISkillExperienceService {
 	
-	public  void updateSkillYears(Long id, Integer years);
-
 	public SkillExperience addSkill(SkillExperienceDTO skillExperienceDto);
-	
+
 	public SkillExperience getSkillById(Long id);
+	
+	public  void updateSkillYears(Long id, Integer years);
 }

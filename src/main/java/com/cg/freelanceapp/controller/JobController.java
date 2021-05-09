@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.freelanceapp.dto.JobDTO;
-import com.cg.freelanceapp.entities.Job;
 import com.cg.freelanceapp.exceptions.InvalidJobException;
 import com.cg.freelanceapp.service.IJobService;
 

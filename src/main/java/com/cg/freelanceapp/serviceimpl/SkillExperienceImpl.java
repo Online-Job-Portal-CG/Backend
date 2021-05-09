@@ -40,19 +40,19 @@ public class SkillExperienceImpl implements ISkillExperienceService {
 	}
 
 	@Override
-	public void updateSkillYears(Long id, Integer years) {
+	public SkillExperience getSkillById(Long id) {
 		 if(skillExperienceDao.existsById(id)) {
-			 SkillExperience skillExperience  = skillExperienceDao.findById(id).get();
-			 skillExperience.setYears(years);
-			 skillExperienceDao.save(skillExperience);
+			return skillExperienceDao.findById(id).get();
 		  }
 		 else throw new InvalidSkillExperienceException();
 	}
 
 	@Override
-	public SkillExperience getSkillById(Long id) {
+	public void updateSkillYears(Long id, Integer years) {
 		 if(skillExperienceDao.existsById(id)) {
-			return skillExperienceDao.findById(id).get();
+			 SkillExperience skillExperience  = skillExperienceDao.findById(id).get();
+			 skillExperience.setYears(years);
+			 skillExperienceDao.save(skillExperience);
 		  }
 		 else throw new InvalidSkillExperienceException();
 	}

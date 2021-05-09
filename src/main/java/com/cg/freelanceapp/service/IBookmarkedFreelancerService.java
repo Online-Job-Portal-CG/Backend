@@ -18,8 +18,6 @@ public interface IBookmarkedFreelancerService {
 
 	BookmarkedFreelancer bookmarkFreelancer(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
 
-	BookmarkedFreelancer save(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
-
 	void deleteBookmarkedFreelancerById(Long id);
 
 	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillname);
@@ -27,5 +25,7 @@ public interface IBookmarkedFreelancerService {
 	BookmarkedFreelancer findById(Long id);
 
 	Long getCurrentId();
+
+	BookmarkedFreelancer save(BookmarkedFreelancerDTO bookmarkedFreelancerDto);
 
 }

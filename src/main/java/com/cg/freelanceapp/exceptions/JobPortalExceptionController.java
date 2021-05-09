@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class JobPortalExceptionController {
 
+	@ExceptionHandler(value = DuplicateSkillException.class)
+	public ResponseEntity<Object> handleException(DuplicateSkillException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.NOT_ACCEPTABLE);
+	}
+
 	@ExceptionHandler(value = InvalidAdminException.class)
 	public ResponseEntity<Object> handleException(InvalidAdminException exception) {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
@@ -64,11 +69,6 @@ public class JobPortalExceptionController {
 	@ExceptionHandler(value = InvalidSkillExperienceException.class)
 	public ResponseEntity<Object> handleException(InvalidSkillExperienceException exception) {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
-	}
-
-	@ExceptionHandler(value = DuplicateSkillException.class)
-	public ResponseEntity<Object> handleException(DuplicateSkillException exception) {
-		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ExceptionHandler(value = JobPortalValidationException.class)

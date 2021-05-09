@@ -24,36 +24,36 @@ public class FeedbackDTO {
 		this.freelancerId = freelancerId;
 	}
 
-	public Integer getRanges() {
-		return ranges;
-	}
-
-	public void setRanges(Integer ranges) {
-		this.ranges = ranges;
-	}
-
 	public String getComments() {
 		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-
-	public Long getRecruiterId() {
-		return recruiterId;
-	}
-
-	public void setRecruiterId(Long recruiterId) {
-		this.recruiterId = recruiterId;
 	}
 
 	public Long getFreelancerId() {
 		return freelancerId;
 	}
 
+	public Integer getRanges() {
+		return ranges;
+	}
+
+	public Long getRecruiterId() {
+		return recruiterId;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
 	public void setFreelancerId(Long freelancerId) {
 		this.freelancerId = freelancerId;
+	}
+
+	public void setRanges(Integer ranges) {
+		this.ranges = ranges;
+	}
+
+	public void setRecruiterId(Long recruiterId) {
+		this.recruiterId = recruiterId;
 	}
 
 }

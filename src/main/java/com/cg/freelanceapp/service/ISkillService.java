@@ -16,20 +16,20 @@ import com.cg.freelanceapp.entities.Skill;
 @Service
 public interface ISkillService {
 
-	Skill save(SkillDTO skillDto);
-
-	Skill save(Skill skill);
-
-	String remove(Long id);
-
-	Skill update(Long id, Skill skill);
-
 	Skill findById(Long id);
-
-	Skill getSkill(Long id);
 
 	List<Skill> getAllSkills();
 
 	Long getCurrentId();
+
+	Skill getSkill(Long id);
+
+	String remove(Long id);
+
+	Skill save(Skill skill);
+
+	Skill save(SkillDTO skillDto);
+
+	Skill update(Long id, Skill skill);
 
 }

@@ -18,9 +18,9 @@ public interface IFreelancerService {
 
 	Freelancer findById(Long id);
 
-	Freelancer save(FreelancerDTO freelancerDto);
-
 	Long getCurrentId();
+
+	Freelancer save(FreelancerDTO freelancerDto);
 
 	Freelancer update(@Valid Long id, FreelancerDTO freelancerDto);
 }

@@ -62,21 +62,21 @@ public class SkillExperienceController {
 		return new ResponseEntity<>("Skill Saved.", HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{id}")
-	public ResponseEntity<Object> updateSkillYears(@PathVariable Long id, @RequestBody Integer Years) {
-		try {
-			skillExperienceService.updateSkillYears(id, Years);
-			return new ResponseEntity<>("Updated records successfully", HttpStatus.OK);
-		} catch (InvalidSkillExperienceException e) {
-			throw new InvalidSkillExperienceException("Cannot find skillExperience with given id");
-		}
-	}
-
 	@GetMapping("/get/{id}")
 	public ResponseEntity<Object> getSkillExperience(@PathVariable Long id) {
 		try {
 			skillExperienceService.getSkillById(id);
 			return new ResponseEntity<>(skillExperienceService.getSkillById(id), HttpStatus.OK);
+		} catch (InvalidSkillExperienceException e) {
+			throw new InvalidSkillExperienceException("Cannot find skillExperience with given id");
+		}
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Object> updateSkillYears(@PathVariable Long id, @RequestBody Integer Years) {
+		try {
+			skillExperienceService.updateSkillYears(id, Years);
+			return new ResponseEntity<>("Updated records successfully", HttpStatus.OK);
 		} catch (InvalidSkillExperienceException e) {
 			throw new InvalidSkillExperienceException("Cannot find skillExperience with given id");
 		}

@@ -31,15 +31,6 @@ public class FreelancerServiceImpl implements IFreelancerService {
 			throw new InvalidFreelancerException();
 	}
 
-	@Override
-	public Freelancer save(FreelancerDTO freelancerDto) {
-		Freelancer freelancer = new Freelancer();
-		freelancer.setFirstName(freelancerDto.getFirstName());
-		freelancer.setLastName(freelancerDto.getLastName());
-		freelancer.setPassword(freelancerDto.getPassword());
-		return freelancerDao.save(freelancer);
-	}
-
 	/*******************************************************************************************
 	 * Method:      getCurrentSeriesId
 	 * @param       none
@@ -49,6 +40,15 @@ public class FreelancerServiceImpl implements IFreelancerService {
 	@Override
 	public Long getCurrentId() {
 		return freelancerDao.getCurrentSeriesId();
+	}
+
+	@Override
+	public Freelancer save(FreelancerDTO freelancerDto) {
+		Freelancer freelancer = new Freelancer();
+		freelancer.setFirstName(freelancerDto.getFirstName());
+		freelancer.setLastName(freelancerDto.getLastName());
+		freelancer.setPassword(freelancerDto.getPassword());
+		return freelancerDao.save(freelancer);
 	}
 
 	@Override

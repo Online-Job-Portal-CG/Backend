@@ -43,6 +43,21 @@ public class SkillController {
 	@Autowired
 	ISkillService skillservice;
 
+	@DeleteMapping(value = "/remove/{id}")
+	public ResponseEntity<Object> deleteSkill(@PathVariable Long id) {
+		try {
+			skillservice.remove(id);
+			return new ResponseEntity<>("Deleted Skill Successfully.", HttpStatus.OK);
+		} catch (InvalidSkillException e) {
+			throw new InvalidSkillException("Cannot find skill with given id.");
+		}
+	}
+
+	@GetMapping(value = "/getAll")
+	public List<Skill> getAllSkills() {
+		return skillservice.getAllSkills();
+	}
+
 	@PostMapping("/add")
 	public ResponseEntity<Object> saveSkill(@Valid @RequestBody SkillDTO skillDto, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
@@ -65,16 +80,6 @@ public class SkillController {
 		return new ResponseEntity<>("Skill Saved.", HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/remove/{id}")
-	public ResponseEntity<Object> deleteSkill(@PathVariable Long id) {
-		try {
-			skillservice.remove(id);
-			return new ResponseEntity<>("Deleted Skill Successfully.", HttpStatus.OK);
-		} catch (InvalidSkillException e) {
-			throw new InvalidSkillException("Cannot find skill with given id.");
-		}
-	}
-
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Object> updateSkill(@PathVariable Long id, @RequestBody Skill skill) {
 		try {
@@ -83,10 +88,5 @@ public class SkillController {
 		} catch (InvalidSkillException e) {
 			throw new InvalidSkillException("Cannot find skill with given id");
 		}
-	}
-
-	@GetMapping(value = "/getAll")
-	public List<Skill> getAllSkills() {
-		return skillservice.getAllSkills();
 	}
 }
