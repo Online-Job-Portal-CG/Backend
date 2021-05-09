@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
-import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
+import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.service.IBookmarkedFreelancerService;
 
 /**************************************************************************************

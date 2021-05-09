@@ -66,6 +66,11 @@ public class JobPortalExceptionController {
 		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(value = DuplicateSkillException.class)
+	public ResponseEntity<Object> handleException(DuplicateSkillException exception) {
+		return new ResponseEntity<>(exception.getLocalizedMessage(), HttpStatus.NOT_ACCEPTABLE);
+	}
+
 	@ExceptionHandler(value = JobPortalValidationException.class)
 	public ResponseEntity<Object> handleException(JobPortalValidationException exception) {
 		return new ResponseEntity<>(exception.getMessages(), HttpStatus.BAD_REQUEST);

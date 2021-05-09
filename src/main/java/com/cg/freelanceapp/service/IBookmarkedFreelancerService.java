@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
-import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
 
 /**************************************************************************************
  * @author       Vishnuvardhan 
