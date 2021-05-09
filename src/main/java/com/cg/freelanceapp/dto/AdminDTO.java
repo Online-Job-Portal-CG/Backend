@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 
  * @author      Vishnuvardhan Reddy
@@ -7,8 +9,11 @@ package com.cg.freelanceapp.dto;
  *
  */
 public class AdminDTO {
+	@NotEmpty(message = "firstName cant be empty")
 	private String firstName;
+	@NotEmpty(message = "lastName cant be empty")
 	private String lastName;
+	@NotEmpty(message = "Password cant be empty")
 	private String password;
 
 	public AdminDTO() {

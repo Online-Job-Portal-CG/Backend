@@ -4,18 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cg.freelanceapp.dto.JobDTO;
 import com.cg.freelanceapp.entities.Job;
-import com.cg.freelanceapp.entities.Recruiter;
-import com.cg.freelanceapp.entities.Skill;
 
 @Service
 public interface IJobService {
 
-	void closeJob(Job job);
+	void close(Long id);
 
 	Job findById(Long id);
-
-	List<Job> findJobsBySkill(Skill skill);
-
-	Job postJob(Skill skill, Recruiter recruiter);
+	
+	List<Job> findJobsBySkillName(String name);
+	
+	Job postJob(JobDTO jobDto);
 }

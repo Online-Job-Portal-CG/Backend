@@ -1,6 +1,8 @@
 package com.cg.freelanceapp.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IAdminDao;
 import com.cg.freelanceapp.dto.AdminDTO;
@@ -8,6 +10,8 @@ import com.cg.freelanceapp.entities.Admin;
 import com.cg.freelanceapp.exceptions.InvalidAdminException;
 import com.cg.freelanceapp.service.IAdminService;
 
+@Service
+@Transactional
 public class AdminServiceImpl implements IAdminService {
 
 	@Autowired

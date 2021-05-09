@@ -2,6 +2,7 @@ package com.cg.freelanceapp.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -43,8 +45,8 @@ public class Job implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	Freelancer awardedTo;
 
-//	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class, cascade = CascadeType.ALL)
-//	List<JobApplication> jobApplications;
+	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class, cascade = CascadeType.ALL)
+	List<JobApplication> jobApplications;
 
 	Boolean active;
 
