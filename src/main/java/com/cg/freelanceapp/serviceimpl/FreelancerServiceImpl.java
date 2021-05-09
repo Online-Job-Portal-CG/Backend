@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.serviceimpl;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dto.FreelancerDTO;
 import com.cg.freelanceapp.entities.Freelancer;
+import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
 import com.cg.freelanceapp.service.IFreelancerService;
 
 /**************************************************************************************
@@ -24,7 +27,10 @@ public class FreelancerServiceImpl implements IFreelancerService {
 
 	@Override
 	public Freelancer findById(Long id) {
-		return freelancerDao.findById(id).get();
+		if (freelancerDao.existsById(id)) {
+			return freelancerDao.findById(id).get();
+		} else
+			throw new InvalidFreelancerException();
 	}
 
 	@Override
@@ -36,11 +42,6 @@ public class FreelancerServiceImpl implements IFreelancerService {
 		return freelancerDao.save(freelancer);
 	}
 
-	@Override
-	public Freelancer update(Freelancer freelancer) {
-		return freelancerDao.save(freelancer);
-	}
-	
 	/*******************************************************************************************
 	 * Method:      getCurrentSeriesId
 	 * @param       none
@@ -50,6 +51,20 @@ public class FreelancerServiceImpl implements IFreelancerService {
 	@Override
 	public Long getCurrentId() {
 		return freelancerDao.getCurrentSeriesId();
+	}
+
+	@Override
+	public Freelancer update(Long id, FreelancerDTO freelancerDto) {
+		if (freelancerDao.existsById(id)) {
+			Freelancer freelancer = freelancerDao.findById(id).get();
+			freelancer.setFirstName(freelancerDto.getFirstName());
+			freelancer.setLastName(freelancerDto.getLastName());
+			freelancer.setPassword(freelancerDto.getPassword());
+			return freelancerDao.save(freelancer);
+		} else {
+			throw new InvalidFreelancerException();
+		}
+
 	}
 
 }

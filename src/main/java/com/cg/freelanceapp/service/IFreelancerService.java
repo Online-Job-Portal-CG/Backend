@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.service;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.FreelancerDTO;
@@ -18,7 +20,7 @@ public interface IFreelancerService {
 
 	Freelancer save(FreelancerDTO freelancerDto);
 
-	Freelancer update(Freelancer freelancer);
-	
 	Long getCurrentId();
+
+	Freelancer update(@Valid Long id, FreelancerDTO freelancerDto);
 }

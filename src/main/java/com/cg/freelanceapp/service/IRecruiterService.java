@@ -6,7 +6,7 @@ import com.cg.freelanceapp.dto.RecruiterDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 
 /**************************************************************************************
- * @author       Vishnuvardhan 
+ * @author       Aditya 
  * Description : This is the Service Interface for Recruiter module. 
  * Created Date: 21 April, 2021 
  * Version     : v1.0.0
@@ -18,7 +18,7 @@ public interface IRecruiterService {
 
 	Recruiter save(RecruiterDTO recruiterdto);
 
-	Recruiter update(Recruiter recruiter);
+	Recruiter update(Long id, RecruiterDTO recruiterDto);
 
 	Long getCurrentId();
 }
