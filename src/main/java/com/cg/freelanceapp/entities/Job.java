@@ -54,12 +54,15 @@ public class Job implements Serializable {
 		super();
 	}
 
-	public Job(Skill skill, Recruiter postedBy, LocalDate postedDate, Freelancer awardedTo, Boolean active) {
+	public Job(Long id, Skill skill, Recruiter postedBy, LocalDate postedDate, Freelancer awardedTo,
+			List<JobApplication> jobApplications, Boolean active) {
 		super();
+		this.id = id;
 		this.skill = skill;
 		this.postedBy = postedBy;
 		this.postedDate = postedDate;
 		this.awardedTo = awardedTo;
+		this.jobApplications = jobApplications;
 		this.active = active;
 	}
 
@@ -103,13 +106,13 @@ public class Job implements Serializable {
 		this.postedBy = postedBy;
 	}
 
-//	public List<JobApplication> getJobApplications() {
-//		return jobApplications;
-//	}
-//
-//	public void setJobApplications(List<JobApplication> jobApplications) {
-//		this.jobApplications = jobApplications;
-//	}
+	public List<JobApplication> getJobApplications() {
+		return jobApplications;
+	}
+
+	public void setJobApplications(List<JobApplication> jobApplications) {
+		this.jobApplications = jobApplications;
+	}
 
 	public void setPostedDate(LocalDate postedDate) {
 		this.postedDate = postedDate;

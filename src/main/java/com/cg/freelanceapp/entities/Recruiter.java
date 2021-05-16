@@ -35,6 +35,7 @@ public class Recruiter implements Serializable {
 
 	String firstName;
 	String lastName;
+	String password;
 
 	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
 	List<Job> postedJobs;
@@ -50,13 +51,14 @@ public class Recruiter implements Serializable {
 	}
 
 	public Recruiter(String firstName, String lastName, List<Job> postedJobs, List<Feedback> feedbacks,
-			List<BookmarkedFreelancer> freelancers) {
+			List<BookmarkedFreelancer> freelancers, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.postedJobs = postedJobs;
 		this.feedbacks = feedbacks;
 		this.freelancers = freelancers;
+		this.password = password;
 	}
 
 	public List<Feedback> getFeedbacks() {
@@ -107,4 +109,12 @@ public class Recruiter implements Serializable {
 		this.postedJobs = postedJobs;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the DTO class for Recruiter module. 
@@ -7,8 +9,12 @@ package com.cg.freelanceapp.dto;
  * Version     : v1.0.0
  *************************************************************************************/
 public class RecruiterDTO {
+	@NotEmpty(message="first name cannot be empty")
 	private String firstName;
+	@NotEmpty(message="last name cannot be empty")
 	private String lastName;
+	@NotEmpty(message="password cannot be blank")
+	private String password;
 
 	public RecruiterDTO() {
 		super();
