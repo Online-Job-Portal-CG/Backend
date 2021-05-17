@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for SkillExperience module. 
@@ -28,16 +31,18 @@ public class SkillExperience implements Serializable {
 	@Column(name = "skill_exp_id")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "skill_exp_seq")
 	@SequenceGenerator(name = "skill_exp_seq", sequenceName = "skill_exp_seq", allocationSize = 1)
-	Long id;
+	private Long id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	Skill skill;
+	private Skill skill;
 
-	Integer years;
+	private Integer years;
 
-	@ManyToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Freelancer.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH })
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "freelancer_id")
-	Freelancer freelancer;
+	private Freelancer freelancer;
 
 	public SkillExperience() {
 		super();

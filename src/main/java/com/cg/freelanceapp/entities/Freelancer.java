@@ -30,33 +30,42 @@ public class Freelancer implements Serializable {
 	@Column(name = "freelancer_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "freelancer_seq")
 	@SequenceGenerator(name = "freelancer_seq", sequenceName = "freelancer_seq", allocationSize = 1)
-	Long id;
-	@Column(updatable = false)
-	String firstName;
-	@Column(updatable = false)
-	String lastName;
-	@Column(updatable = false)
-	String password;
+	private Long id;
+
+	@Column(unique = true, nullable = false)
+	private String userName;
+
+	@Column(nullable = false)
+	private String firstName;
+	@Column(nullable = false)
+	private String lastName;
+	@Column(nullable = false)
+	private String password;
 
 	@OneToMany(targetEntity = JobApplication.class)
-	List<JobApplication> appliedJobs;
+	private List<JobApplication> appliedJobs;
 
-	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	List<Feedback> feedbacks;
+	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private List<Feedback> feedbacks;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	List<SkillExperience> skills;
+	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private List<SkillExperience> skills;
 
-	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class, cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	List<BookmarkedJob> bookmarkedJobs;
+	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class, cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
+	private List<BookmarkedJob> bookmarkedJobs;
 
 	public Freelancer() {
 		super();
 	}
 
-	public Freelancer(String firstName, String lastName, String password, List<JobApplication> appliedJobs,
-			List<Feedback> feedbacks, List<SkillExperience> skills, List<BookmarkedJob> bookmarkedJobs) {
+	public Freelancer(String userName, String firstName, String lastName, String password,
+			List<JobApplication> appliedJobs, List<Feedback> feedbacks, List<SkillExperience> skills,
+			List<BookmarkedJob> bookmarkedJobs) {
 		super();
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
@@ -64,6 +73,14 @@ public class Freelancer implements Serializable {
 		this.feedbacks = feedbacks;
 		this.skills = skills;
 		this.bookmarkedJobs = bookmarkedJobs;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public List<JobApplication> getAppliedJobs() {

@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Job module. 
@@ -31,24 +34,29 @@ public class Job implements Serializable {
 	@Column(name = "job_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "job_seq")
 	@SequenceGenerator(name = "job_seq", sequenceName = "job_seq", allocationSize = 1)
-	Long id;
+	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	Skill skill;
+	@OneToOne(targetEntity = Skill.class, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Skill skill;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Recruiter.class, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "recruiter_id")
-	Recruiter postedBy;
+	private Recruiter postedBy;
 
-	LocalDate postedDate;
+	private LocalDate postedDate;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	Freelancer awardedTo;
+	@OneToOne(targetEntity = Freelancer.class, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Freelancer awardedTo;
 
-	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class, cascade = CascadeType.ALL)
-	List<JobApplication> jobApplications;
+	@OneToMany(mappedBy = "job", targetEntity = JobApplication.class, cascade = { CascadeType.MERGE,
+			CascadeType.REFRESH })
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private List<JobApplication> jobApplications;
 
-	Boolean active;
+	private Boolean active;
 
 	public Job() {
 		super();

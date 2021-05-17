@@ -27,7 +27,7 @@ public class Feedback implements Serializable {
 
 	private static final long serialVersionUID = -4183773630437671124L;
 	@Id
-	@Column(name = "feedback_id")
+	@Column(name = "feedback_id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "feedback_seq")
 	@SequenceGenerator(name = "feedback_seq", sequenceName = "feedback_seq", allocationSize = 1)
 	Long id;
@@ -36,10 +36,12 @@ public class Feedback implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Recruiter.class)
 	@JoinColumn(name = "recruiter_id")
+	@Column(nullable = false)
 	Recruiter createdBy;
 
 	@ManyToOne(cascade = CascadeType.ALL, targetEntity = Freelancer.class)
 	@JoinColumn(name = "freelancer_id")
+	@Column(nullable = false)
 	Freelancer createdFor;
 
 	public Feedback() {
@@ -52,6 +54,10 @@ public class Feedback implements Serializable {
 		this.comments = comments;
 		this.createdBy = createdBy;
 		this.createdFor = createdFor;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	public String getComments() {

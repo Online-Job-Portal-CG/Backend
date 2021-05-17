@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for BookmarkedJob module. 
@@ -28,19 +31,22 @@ public class BookmarkedJob implements Serializable {
 	@Column(name = "bkd_job_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "bkd_job_seq")
 	@SequenceGenerator(name = "bkd_job_seq", sequenceName = "bkd_job_seq", allocationSize = 1)
-	Long id;
+	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "skill_id")
-	Skill skill;
+	private Skill skill;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Job.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "job_id")
-	Job job;
+	private Job job;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "freelancer_id")
-	Freelancer freelancer;
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Freelancer freelancer;
 
 	public BookmarkedJob() {
 		super();

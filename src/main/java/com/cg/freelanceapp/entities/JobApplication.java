@@ -28,15 +28,16 @@ public class JobApplication implements Serializable {
 	@Column(name = "job_app_id", updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "job_app_seq")
 	@SequenceGenerator(name = "job_app_seq", sequenceName = "job_app_seq", allocationSize = 1)
-	Long id;
+	private Long id;
 
-	@ManyToOne(targetEntity = Job.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Job.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH })
 	@JoinColumn(name = "job_id")
-	Job job;
+	private Job job;
 
-	LocalDateTime appliedDate;
+	private LocalDateTime appliedDate;
 
-	String coverLetter;
+	private String coverLetter;
 
 	public JobApplication() {
 		super();

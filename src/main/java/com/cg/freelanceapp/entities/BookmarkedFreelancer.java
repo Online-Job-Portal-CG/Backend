@@ -40,19 +40,17 @@ public class BookmarkedFreelancer implements Serializable {
 
 	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotNull(message = "Skill id should not be empty.")
+	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
 	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "freelancer_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotNull(message = "Freelancer id should not be empty.")
 	private Freelancer freelancer;
 
 	@ManyToOne(targetEntity = Recruiter.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name = "recruiter_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@NotNull(message = "Recruiter id should not be empty.")
 	private Recruiter bookmarkedBy;
 
 	public BookmarkedFreelancer() {
