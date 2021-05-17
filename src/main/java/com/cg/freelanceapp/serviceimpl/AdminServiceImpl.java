@@ -29,10 +29,12 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public Admin save(AdminDTO adminDto) {
 		Admin admin = new Admin();
+		String userName = adminDto.getUserName();
 		String firstName = adminDto.getFirstName();
 		String lastName = adminDto.getLastName();
 		String password = adminDto.getPassword();
-		if (!(firstName == null || lastName == null || password == null)) {
+		if (!(firstName == null || lastName == null || password == null || userName == null)) {
+			admin.setUserName(userName);
 			admin.setFirstName(firstName);
 			admin.setLastName(lastName);
 			admin.setPassword(password);
@@ -48,6 +50,15 @@ public class AdminServiceImpl implements IAdminService {
 			Admin admin = adminDao.findById(id).get();
 			admin.setPassword(adminDto.getPassword());
 			return adminDao.save(admin);
+		} else {
+			throw new InvalidAdminException();
+		}
+	}
+
+	@Override
+	public Admin findByUserName(String userName) {
+		if (adminDao.existsByUserName(userName)) {
+			return adminDao.findByUserName(userName);
 		} else {
 			throw new InvalidAdminException();
 		}

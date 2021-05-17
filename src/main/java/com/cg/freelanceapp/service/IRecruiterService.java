@@ -21,4 +21,6 @@ public interface IRecruiterService {
 	Recruiter save(RecruiterDTO recruiterdto);
 
 	Recruiter update(Long id, RecruiterDTO recruiterDto);
+	
+	Recruiter findByUserName(String userName);
 }

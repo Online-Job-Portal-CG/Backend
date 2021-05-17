@@ -23,4 +23,8 @@ public interface IFreelancerDao extends JpaRepository<Freelancer, Long> {
 	 *******************************************************************************************/
 	@Query(value = "select freelancer_seq.currval from dual", nativeQuery = true)
 	Long getCurrentSeriesId();
+
+	public Freelancer findByUserName(String userName);
+
+	public boolean existsByUserName(String userName);
 }

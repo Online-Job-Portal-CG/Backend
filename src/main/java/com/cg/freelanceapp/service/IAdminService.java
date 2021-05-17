@@ -12,5 +12,7 @@ public interface IAdminService {
 	Admin save(AdminDTO adminDto);
 
 	Admin update(Long id, AdminDTO adminDto);
+	
+	Admin findByUserName(String userName);
 
 }

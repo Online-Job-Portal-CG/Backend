@@ -65,4 +65,13 @@ public class FreelancerServiceImpl implements IFreelancerService {
 
 	}
 
+	@Override
+	public Freelancer findByUserName(String userName) {
+		if(freelancerDao.existsByUserName(userName)) {
+			return freelancerDao.findByUserName(userName);
+		}else {
+			throw new InvalidFreelancerException();
+		}
+	}
+
 }

@@ -23,4 +23,6 @@ public interface IFreelancerService {
 	Freelancer save(FreelancerDTO freelancerDto);
 
 	Freelancer update(@Valid Long id, FreelancerDTO freelancerDto);
+
+	Freelancer findByUserName(String userName);
 }

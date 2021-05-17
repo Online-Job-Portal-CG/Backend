@@ -86,6 +86,25 @@ public class FreelancerController {
 		}
 	}
 	
+	/*****************************************************************************************
+	 * Method      : getByUserName       
+	 * @param        userName
+	 * @return       Freelancer object
+	 * Description : This method fetches a freelancer based on the unique id.
+	 * @getmapping : Get mapping expects a PathVariable to be passed 
+	 *               which is then used to return the entity object 
+	 *               that is fetched from the database.
+	 ****************************************************************************************/
+	@GetMapping("/get/{userName}")
+	public Freelancer getByUserName(@PathVariable String userName) {
+		try {
+			return freelancerService.findByUserName(userName);
+		}
+		catch(InvalidFreelancerException exception){
+			throw new InvalidFreelancerException("Freelancer with userName not found.");
+		}
+	}
+	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Object> updateFreelancer(@Valid @PathVariable Long id,
 			@RequestBody FreelancerDTO freelancerDto) {

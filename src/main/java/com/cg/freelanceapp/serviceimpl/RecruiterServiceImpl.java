@@ -61,4 +61,13 @@ public class RecruiterServiceImpl implements IRecruiterService {
 			throw new InvalidRecruiterException();
 	}
 
+	@Override
+	public Recruiter findByUserName(String userName) {
+		if (recruiterDao.existsByUserName(userName)) {
+			return recruiterDao.findByUserName(userName);
+		} else {
+			throw new InvalidRecruiterException();
+		}
+	}
+
 }

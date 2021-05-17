@@ -101,12 +101,29 @@ public class AdminController {
 	 */
 
 	@GetMapping(value = "/find/{id}")
-	
 	public Admin findById(@PathVariable Long id) {
 		try {
 			return adminService.findById(id);
 		} catch (InvalidAdminException exception) {
 			throw new InvalidAdminException("Id not found");
+		}
+	}
+
+	/**
+	 * 
+	 * @param        userName
+	 * @return       Response Entity of type Admin
+	 * Description: This method finds Admin by userName
+	 * @GetMapping: Annotation for mapping HTTP GET requests onto specific handler methods.
+	 * 
+	 */
+
+	@GetMapping(value = "/find/{userName}")
+	public Admin findByUserName(@PathVariable String userName) {
+		try {
+			return adminService.findByUserName(userName);
+		} catch (InvalidAdminException exception) {
+			throw new InvalidAdminException("Admin with userName not found");
 		}
 	}
 }

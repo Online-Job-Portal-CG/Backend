@@ -63,6 +63,15 @@ public class RecruiterController {
 			throw new InvalidRecruiterException("Recruiter with given id not found");
 		}
 	}
+	
+	@GetMapping("/get/{userName}")
+	public Recruiter getByUserName(@PathVariable String userName) {
+		try {
+			return recruiterService.findByUserName(userName);
+		} catch (InvalidRecruiterException exception) {
+			throw new InvalidRecruiterException("Recruiter with userName not found");
+		}
+	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Object> updateRecruiter(@Valid @PathVariable Long id,

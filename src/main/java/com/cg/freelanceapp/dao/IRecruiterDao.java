@@ -14,7 +14,7 @@ import com.cg.freelanceapp.entities.Recruiter;
  *************************************************************************************/
 @Repository
 public interface IRecruiterDao extends JpaRepository<Recruiter, Long> {
-	
+
 	/*******************************************************************************************
 	 * Method:      getCurrentSeriesId
 	 * @param       none
@@ -23,4 +23,8 @@ public interface IRecruiterDao extends JpaRepository<Recruiter, Long> {
 	 *******************************************************************************************/
 	@Query(value = "select recruiter_seq.currval from dual", nativeQuery = true)
 	Long getCurrentSeriesId();
+
+	public Recruiter findByUserName(String userName);
+
+	public boolean existsByUserName(String userName);
 }
