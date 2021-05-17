@@ -7,10 +7,10 @@ package com.cg.freelanceapp.dto;
  * Version     : v1.0.0
  *************************************************************************************/
 public class FeedbackDTO {
-	Integer ranges;
-	String comments;
-	Long recruiterId;
-	Long freelancerId;
+	private Integer ranges;
+	private String comments;
+	private Long recruiterId;
+	private Long freelancerId;
 
 	public FeedbackDTO() {
 		super();

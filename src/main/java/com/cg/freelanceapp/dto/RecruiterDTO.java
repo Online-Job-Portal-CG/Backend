@@ -9,21 +9,26 @@ import javax.validation.constraints.NotEmpty;
  * Version     : v1.0.0
  *************************************************************************************/
 public class RecruiterDTO {
-	@NotEmpty(message="first name cannot be empty")
+
+	@NotEmpty(message = "userName cannot be empty")
+	private String userName;
+	@NotEmpty(message = "first name cannot be empty")
 	private String firstName;
-	@NotEmpty(message="last name cannot be empty")
+	@NotEmpty(message = "last name cannot be empty")
 	private String lastName;
-	@NotEmpty(message="password cannot be blank")
+	@NotEmpty(message = "password cannot be blank")
 	private String password;
 
 	public RecruiterDTO() {
 		super();
 	}
 
-	public RecruiterDTO(String firstName, String lastName) {
+	public RecruiterDTO(String userName, String firstName, String lastName, String password) {
 		super();
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -34,6 +39,14 @@ public class RecruiterDTO {
 		return lastName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -42,4 +55,11 @@ public class RecruiterDTO {
 		this.lastName = lastName;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

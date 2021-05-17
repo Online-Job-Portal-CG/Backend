@@ -10,11 +10,11 @@ import javax.validation.constraints.NotNull;
  *************************************************************************************/
 public class SkillExperienceDTO {
 	@NotNull(message = "Experience cannot be empty")
-	Integer years;
+	private Integer years;
 	@NotNull(message = "Skill Id cannot be blank")
-	Long skillId;
+	private Long skillId;
 	@NotNull(message = "Freelancer Id cannot be blank")
-	Long freelancerId;
+	private Long freelancerId;
 
 	public SkillExperienceDTO() {
 		super();

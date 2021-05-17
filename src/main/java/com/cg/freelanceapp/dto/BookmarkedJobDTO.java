@@ -5,13 +5,13 @@ import javax.validation.constraints.NotNull;
 public class BookmarkedJobDTO 
 {
 	@NotNull(message="Skill_id cannot be null")
-	Long skillId;
+	private Long skillId;
 	
 	@NotNull(message="freelancer_id cannot be null")
-	Long freelancerId;
+	private Long freelancerId;
 	
 	@NotNull(message="job_id cannot be null")
-    Long jobId;
+    private Long jobId;
 
 	public BookmarkedJobDTO() {
 		super();
