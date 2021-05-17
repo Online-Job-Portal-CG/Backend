@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,11 @@ import com.cg.freelanceapp.exceptions.InvalidSkillExperienceException;
 import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.service.ISkillExperienceService;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("SkillExperience Controller")
 @RestController
 @RequestMapping("/skillExperience")
+@CrossOrigin(origins = "*")
 public class SkillExperienceController {
 
 	@Autowired

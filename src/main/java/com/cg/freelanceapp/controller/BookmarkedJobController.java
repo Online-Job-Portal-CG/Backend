@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,8 @@ import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.service.IBookmarkedJobService;
 
 @RestController
-@RequestMapping("/BookmarkedJob")
+@RequestMapping("/bmark/job")
+@CrossOrigin(origins = "*")
 public class BookmarkedJobController 
 {
 	@Autowired
@@ -40,7 +42,7 @@ public class BookmarkedJobController
 	 * Description: This method request for the data, checks validation of the data and creates bookmark for job.
 	 * @PostMapping: This annotation handles with http post requests matched with the given url expression.  
 	 */
-	@PostMapping("/create")
+	@PostMapping("/add")
 	public ResponseEntity<Object> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,BindingResult bindingResult)
 	{
 		if (bindingResult.hasErrors()) {
@@ -113,7 +115,7 @@ public class BookmarkedJobController
 	 * @GettMapping: This annotation handles with http get requests matched with the given url expression.  
 	 */
  
-	@GetMapping("/findBySkill/{skillName}")
+	@GetMapping("/get/{skillName}")
 	public List<BookmarkedJob> listJobsBySkill(@Valid @PathVariable String skillName) {
 		try {
 			List<BookmarkedJob> bookmarkedJobs = bookmarkedJobService.findBookmarkedJobsBySkillName(skillName);

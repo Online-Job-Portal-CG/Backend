@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,6 @@ import com.cg.freelanceapp.exceptions.InvalidJobException;
 import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.service.IJobApplicationService;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**************************************************************************************
@@ -36,9 +36,9 @@ import io.swagger.annotations.ApiOperation;
  * Version : v1.0.0
  *************************************************************************************/
 
-@Api("JobApplication Controller")
 @RestController
 @RequestMapping(value="/jobApplication")
+@CrossOrigin(origins = "*")
 public class JobApplicationController {
 	
 	@Autowired
@@ -55,7 +55,7 @@ public class JobApplicationController {
 	 ****************************************************************************************/
 	
 	@ApiOperation(value="apply to job application")
-	@PostMapping(value = "/applyToJob")
+	@PostMapping(value = "/apply")
 	public ResponseEntity<String> applyToJob(@Valid @RequestBody JobApplicationDTO jobApplicationDto,BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
 			System.out.println("Some errors exist!");
@@ -108,7 +108,7 @@ public class JobApplicationController {
 	 *                 which is used to delete the object from the database.
 	 ************************************************************************************/
 	
-	@DeleteMapping(value = "/deleteById/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<Object> remove(@Valid @PathVariable Long id) {
 		try {
 		jobApplicationService.remove(id);
@@ -128,7 +128,7 @@ public class JobApplicationController {
 	 * 				 which is then persisted onto the database.
 	 ****************************************************************************************/
 	
-	@PutMapping(value="/updateJobApplication/{id}")
+	@PutMapping(value="/update/{id}")
 	public ResponseEntity<Object> updateJobApplication(@Valid @PathVariable Long id,@RequestBody JobApplicationDTO jobApplicationDto,BindingResult bindingResult){
 		if (bindingResult.hasErrors()) {
 			System.out.println("Some errors exist!");

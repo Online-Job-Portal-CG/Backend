@@ -33,12 +33,9 @@ import com.cg.freelanceapp.exceptions.InvalidSkillException;
 import com.cg.freelanceapp.exceptions.JobPortalValidationException;
 import com.cg.freelanceapp.service.ISkillService;
 
-import io.swagger.annotations.Api;
-
-@CrossOrigin(origins = "*")
-@Api("Skill Controller")
 @RestController
 @RequestMapping("/skills")
+@CrossOrigin(origins = "*")
 public class SkillController {
 	@Autowired
 	ISkillService skillservice;
