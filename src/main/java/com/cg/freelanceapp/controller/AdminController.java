@@ -100,7 +100,7 @@ public class AdminController {
 	 * 
 	 */
 
-	@GetMapping(value = "/find/{id}")
+	@GetMapping(value = "/find/id/{id}")
 	public Admin findById(@PathVariable Long id) {
 		try {
 			return adminService.findById(id);
@@ -118,7 +118,7 @@ public class AdminController {
 	 * 
 	 */
 
-	@GetMapping(value = "/find/{userName}")
+	@GetMapping(value = "/find/name/{userName}")
 	public Admin findByUserName(@PathVariable String userName) {
 		try {
 			return adminService.findByUserName(userName);

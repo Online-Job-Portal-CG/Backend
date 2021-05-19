@@ -95,7 +95,7 @@ public class BookmarkedJobController
 	 * GetMapping: This annotation handles with http get requests matched with the given url expression.  
 	 */
 	
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public ResponseEntity<Object> getById(@Valid @PathVariable Long id) {
 		try {
 			BookmarkedJob bookmarkedJob = bookmarkedJobService.findById(id);
@@ -115,7 +115,7 @@ public class BookmarkedJobController
 	 * @GettMapping: This annotation handles with http get requests matched with the given url expression.  
 	 */
  
-	@GetMapping("/get/{skillName}")
+	@GetMapping("/get/skill/{skillName}")
 	public List<BookmarkedJob> listJobsBySkill(@Valid @PathVariable String skillName) {
 		try {
 			List<BookmarkedJob> bookmarkedJobs = bookmarkedJobService.findBookmarkedJobsBySkillName(skillName);

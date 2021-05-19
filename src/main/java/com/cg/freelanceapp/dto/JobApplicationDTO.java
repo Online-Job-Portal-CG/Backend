@@ -1,15 +1,11 @@
 package com.cg.freelanceapp.dto;
 
-import java.time.LocalDate;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class JobApplicationDTO {
 	@NotNull(message = "Job ID cannot be blank")
 	private Long jobId;
-	@NotNull(message = "Enter a valid date")
-	private LocalDate appliedDate;
 	@NotEmpty(message = "Cover Letter cannot be empty")
 	private String coverLetter;
 
@@ -17,15 +13,10 @@ public class JobApplicationDTO {
 		super();
 	}
 
-	public JobApplicationDTO(Long jobId, LocalDate appliedDate, String coverLetter) {
+	public JobApplicationDTO(Long jobId, String coverLetter) {
 		super();
 		this.jobId = jobId;
-		this.appliedDate = appliedDate;
 		this.coverLetter = coverLetter;
-	}
-
-	public LocalDate getAppliedDate() {
-		return appliedDate;
 	}
 
 	public String getCoverLetter() {
@@ -34,10 +25,6 @@ public class JobApplicationDTO {
 
 	public Long getJobId() {
 		return jobId;
-	}
-
-	public void setAppliedDate(LocalDate appliedDate) {
-		this.appliedDate = appliedDate;
 	}
 
 	public void setCoverLetter(String coverLetter) {

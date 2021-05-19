@@ -55,7 +55,7 @@ public class RecruiterController {
 		return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
 	}
 
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public Recruiter getById(@PathVariable Long id) {
 		try {
 			return recruiterService.findById(id);
@@ -64,7 +64,7 @@ public class RecruiterController {
 		}
 	}
 	
-	@GetMapping("/get/{userName}")
+	@GetMapping("/get/name/{userName}")
 	public Recruiter getByUserName(@PathVariable String userName) {
 		try {
 			return recruiterService.findByUserName(userName);

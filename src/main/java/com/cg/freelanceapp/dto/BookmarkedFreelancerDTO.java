@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
  *************************************************************************************/
 public class BookmarkedFreelancerDTO {
 	
-	@NotNull(message = "skillId cant be null")
-	private Long skillId;
 	@NotNull(message = "recruiterId cant be null")
 	private Long recruiterId;
 	@NotNull(message = "freelancerId cant be null")
@@ -21,9 +19,8 @@ public class BookmarkedFreelancerDTO {
 		super();
 	}
 
-	public BookmarkedFreelancerDTO(Long skillId, Long recruiterId, Long freelancerId) {
+	public BookmarkedFreelancerDTO(Long recruiterId, Long freelancerId) {
 		super();
-		this.skillId = skillId;
 		this.recruiterId = recruiterId;
 		this.freelancerId = freelancerId;
 	}
@@ -36,20 +33,12 @@ public class BookmarkedFreelancerDTO {
 		return recruiterId;
 	}
 
-	public Long getSkillId() {
-		return skillId;
-	}
-
 	public void setFreelancerId(Long freelancerId) {
 		this.freelancerId = freelancerId;
 	}
 
 	public void setRecruiterId(Long recruiterId) {
 		this.recruiterId = recruiterId;
-	}
-
-	public void setSkillId(Long skillId) {
-		this.skillId = skillId;
 	}
 
 }

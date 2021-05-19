@@ -13,4 +13,7 @@ import com.cg.freelanceapp.entities.Feedback;
 public interface IFeedbackDao extends JpaRepository<Feedback, Long> {
 	@Query("select fb from Feedback fb where fb.createdFor.id=:id")
 	public List<Feedback> findFeedbacksByFreelancerId(@Param("id") Long id);
+
+	@Query("select AVG(fb.ranges) from Feedback fb where fb.createdFor.id = :id")
+	public Float averageRatings(@Param("id") Long id);
 }

@@ -76,7 +76,7 @@ public class FreelancerController {
 	 *               which is then used to return the entity object 
 	 *               that is fetched from the database.
 	 ****************************************************************************************/
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public Freelancer getById(@PathVariable Long id) {
 		try {
 			return freelancerService.findById(id);
@@ -95,7 +95,7 @@ public class FreelancerController {
 	 *               which is then used to return the entity object 
 	 *               that is fetched from the database.
 	 ****************************************************************************************/
-	@GetMapping("/get/{userName}")
+	@GetMapping("/get/name/{userName}")
 	public Freelancer getByUserName(@PathVariable String userName) {
 		try {
 			return freelancerService.findByUserName(userName);
@@ -114,5 +114,10 @@ public class FreelancerController {
 			throw new InvalidFreelancerException("Freelancer with given id not found");
 		}
 		return new ResponseEntity<>("Updated Freelancer Successfully", HttpStatus.OK);
+	}
+	
+	@GetMapping("/listAll")
+	public ResponseEntity<Object> listAll(){
+		return new ResponseEntity<>(freelancerService.listFreelancers(), HttpStatus.OK);
 	}
 }

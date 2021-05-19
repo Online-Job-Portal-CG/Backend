@@ -48,7 +48,10 @@ public class AdminServiceImpl implements IAdminService {
 	public Admin update(Long id, AdminDTO adminDto) {
 		if (adminDao.existsById(id)) {
 			Admin admin = adminDao.findById(id).get();
+			admin.setUserName(adminDto.getUserName());
 			admin.setPassword(adminDto.getPassword());
+			admin.setFirstName(adminDto.getFirstName());
+			admin.setLastName(adminDto.getLastName());
 			return adminDao.save(admin);
 		} else {
 			throw new InvalidAdminException();

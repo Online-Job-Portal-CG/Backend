@@ -16,6 +16,9 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for SkillExperience module. 
@@ -23,6 +26,7 @@ import org.hibernate.annotations.OnDeleteAction;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class SkillExperience implements Serializable {
 
 	private static final long serialVersionUID = -8047471705942110842L;

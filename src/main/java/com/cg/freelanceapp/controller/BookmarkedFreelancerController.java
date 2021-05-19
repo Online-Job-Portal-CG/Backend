@@ -68,7 +68,7 @@ public class BookmarkedFreelancerController {
 		} catch (InvalidBookmarkedFreelancerException exception) {
 			throw new InvalidBookmarkedFreelancerException("One or more entered fields contain invalid objects.");
 		}
-		return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+		return new ResponseEntity<>("Added successfully", HttpStatus.OK);
 	}
 
 	/*************************************************************************************
@@ -99,7 +99,7 @@ public class BookmarkedFreelancerController {
 	 *               which is then used to return the entity object 
 	 *               that is fetched from the database.
 	 ************************************************************************************/
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public ResponseEntity<Object> getById(@Valid @PathVariable Long id) {
 		try {
 			BookmarkedFreelancer bookmark = bookmarkedFreelancerService.findById(id);
@@ -108,23 +108,9 @@ public class BookmarkedFreelancerController {
 			throw new InvalidBookmarkedFreelancerException("No Bookmark with specified id.");
 		}
 	}
-
-	/**************************************************************************************
-	 * Method      : listFreelancersBySkill       
-	 * @param        skillName
-	 * @return       List<BookmarkedFreelancer>
-	 * Description : This method fetches a list of Bookmarked Freelancers based on the skill name
-	 * @getmapping : Get mapping expects a PathVariable to be passed 
-	 *               which is then used to return the entity object 
-	 *               that is fetched from the database.
-	 *************************************************************************************/
-	@GetMapping("/findBySkill/{skillName}")
-	public List<BookmarkedFreelancer> listFreelancersBySkill(@Valid @PathVariable String skillName) {
-		try {
-			return bookmarkedFreelancerService.findBookmarkedFreelancersBySkillName(skillName);
-		} catch (InvalidBookmarkedFreelancerException exception) {
-			throw new InvalidFreelancerException("No bookmarks found for the specified skill name");
-		}
-
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<Object> getAll(){
+		return new ResponseEntity<>(bookmarkedFreelancerService.getAll(), HttpStatus.OK);
 	}
 }

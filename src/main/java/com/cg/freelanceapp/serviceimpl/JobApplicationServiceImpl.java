@@ -22,69 +22,71 @@ import com.cg.freelanceapp.service.IJobApplicationService;
 @Service
 @Transactional
 public class JobApplicationServiceImpl implements IJobApplicationService {
-	
+
 	@Autowired
 	IJobApplicationDao jobApplicationDao;
-	
+
 	@Autowired
 	IJobDao jobDao;
 
 	@Override
 	public JobApplication applyToJob(JobApplicationDTO jobApplicationDto) {
-		JobApplication jobApplication= new JobApplication();
-		if(!jobApplicationDto.getCoverLetter().isEmpty()||jobApplicationDto.getJobId()!=null) {
+		JobApplication jobApplication = new JobApplication();
+		if (!jobApplicationDto.getCoverLetter().isEmpty() || jobApplicationDto.getJobId() != null) {
+
 			jobApplication.setCoverLetter(jobApplicationDto.getCoverLetter());
-			if(jobDao.existsById(jobApplicationDto.getJobId())) {
+
+			if (jobDao.existsById(jobApplicationDto.getJobId())) {
+
 				jobApplication.setJob(jobDao.findById(jobApplicationDto.getJobId()).get());
 				return jobApplicationDao.save(jobApplication);
-			}else {
+
+			} else {
+
 				throw new InvalidJobException();
+
 			}
-			
-			
-			
-		}
-		else {
+
+		} else {
 			throw new InvalidJobApplicationException();
 		}
 	}
-
 
 	@Override
 	public JobApplication findById(Long id) {
-		if(jobApplicationDao.existsById(id)) {
-		return jobApplicationDao.findById(id).get();
-		}else {
+		if (jobApplicationDao.existsById(id)) {
+			return jobApplicationDao.findById(id).get();
+		} else {
 			throw new InvalidJobApplicationException();
 		}
 	}
-
 
 	@Override
 	public void remove(Long id) {
-		if(jobApplicationDao.existsById(id)) {
-		jobApplicationDao.deleteById(id);
-		}else {
+		if (jobApplicationDao.existsById(id)) {
+
+			jobApplicationDao.deleteById(id);
+		} else {
 			throw new InvalidJobApplicationException();
 		}
-		
+
 	}
 
-	
 	@Override
 	public JobApplication updateJobApplication(Long id, JobApplicationDTO jobApplicationDto) {
-		if(jobApplicationDao.existsById(id)) {
-			JobApplication jobApplication=jobApplicationDao.findById(id).get();
+		if (jobApplicationDao.existsById(id)) {
+			
+			JobApplication jobApplication = jobApplicationDao.findById(id).get();
 			jobApplication.setCoverLetter(jobApplicationDto.getCoverLetter());
-			System.out.println(jobApplication.getCoverLetter());
+			
 			jobApplication.setJob(jobDao.findById(jobApplicationDto.getJobId()).get());
 			jobApplicationDao.save(jobApplication);
+			
 			return jobApplication;
-		}else {
+		} else {
 			throw new InvalidJobApplicationException();
 		}
-		
-		
+
 	}
 
 }

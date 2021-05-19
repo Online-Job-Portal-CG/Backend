@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Admin module. 
@@ -16,6 +19,7 @@ import javax.persistence.SequenceGenerator;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Admin implements Serializable {
 
 	private static final long serialVersionUID = -3376723589710738177L;

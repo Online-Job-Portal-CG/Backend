@@ -28,8 +28,10 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	IFreelancerDao freelancerDao;
 
 	@Override
-	public int averageRating(Freelancer freelancer) {
-		return 0;
+	public Float averageRating(Long id) {
+		if (freelancerDao.existsById(id)) {
+			return feedbackDao.averageRatings(id);
+		}else throw new InvalidFeedbackException();
 	}
 
 	@Override

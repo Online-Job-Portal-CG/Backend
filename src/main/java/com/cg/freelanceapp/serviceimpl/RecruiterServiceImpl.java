@@ -47,7 +47,13 @@ public class RecruiterServiceImpl implements IRecruiterService {
 		Recruiter recruiter = new Recruiter();
 		recruiter.setFirstName(recruiterDto.getFirstName());
 		recruiter.setLastName(recruiterDto.getLastName());
-		return recruiterDao.save(recruiter);
+		recruiter.setUserName(recruiterDto.getUserName());
+		recruiter.setPassword(recruiterDto.getPassword());
+		if (!(recruiterDto.getFirstName() == null || recruiterDto.getLastName() == null
+				|| recruiterDto.getUserName() == null || recruiterDto.getPassword() == null))
+			return recruiterDao.save(recruiter);
+		else
+			throw new InvalidRecruiterException();
 	}
 
 	@Override
@@ -56,6 +62,8 @@ public class RecruiterServiceImpl implements IRecruiterService {
 			Recruiter recruiter = recruiterDao.findById(id).get();
 			recruiter.setFirstName(recruiterDto.getFirstName());
 			recruiter.setLastName(recruiterDto.getLastName());
+			recruiter.setUserName(recruiterDto.getUserName());
+			recruiter.setPassword(recruiterDto.getPassword());
 			return recruiterDao.save(recruiter);
 		} else
 			throw new InvalidRecruiterException();

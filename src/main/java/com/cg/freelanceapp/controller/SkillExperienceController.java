@@ -62,7 +62,7 @@ public class SkillExperienceController {
 		return new ResponseEntity<>("Skill Saved.", HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public ResponseEntity<Object> getSkillExperience(@PathVariable Long id) {
 		try {
 			skillExperienceService.getSkillById(id);

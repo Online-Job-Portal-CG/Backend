@@ -40,6 +40,7 @@ public class JobServiceImpl implements IJobService {
 		if (jobdao.existsById(id)) {
 			Job job = jobdao.findById(id).get();
 			job.setActive(false);
+			jobdao.save(job);
 		} else {
 			throw new InvalidJobException();
 		}
@@ -74,6 +75,7 @@ public class JobServiceImpl implements IJobService {
 			job.setPostedBy(recruiterDao.findById(jobdto.getRecruiterId()).get());
 			job.setAwardedTo(freelancerDao.findById(jobdto.getFreelancerid()).get());
 			job.setSkill(skillDao.findById(jobdto.getSkillId()).get());
+			job.setActive(true);
 			return jobdao.save(job);
 		} else
 			throw new InvalidJobException();

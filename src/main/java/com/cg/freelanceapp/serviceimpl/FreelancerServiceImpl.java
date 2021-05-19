@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +50,12 @@ public class FreelancerServiceImpl implements IFreelancerService {
 		freelancer.setFirstName(freelancerDto.getFirstName());
 		freelancer.setLastName(freelancerDto.getLastName());
 		freelancer.setPassword(freelancerDto.getPassword());
-		return freelancerDao.save(freelancer);
+		freelancer.setUserName(freelancerDto.getUserName());
+		if (!(freelancerDto.getFirstName() == null || freelancerDto.getLastName() == null
+				|| freelancerDto.getPassword() == null || freelancerDto.getUserName() == null))
+			return freelancerDao.save(freelancer);
+		else
+			throw new InvalidFreelancerException();
 	}
 
 	@Override
@@ -58,6 +65,7 @@ public class FreelancerServiceImpl implements IFreelancerService {
 			freelancer.setFirstName(freelancerDto.getFirstName());
 			freelancer.setLastName(freelancerDto.getLastName());
 			freelancer.setPassword(freelancerDto.getPassword());
+			freelancer.setUserName(freelancerDto.getUserName());
 			return freelancerDao.save(freelancer);
 		} else {
 			throw new InvalidFreelancerException();
@@ -67,11 +75,16 @@ public class FreelancerServiceImpl implements IFreelancerService {
 
 	@Override
 	public Freelancer findByUserName(String userName) {
-		if(freelancerDao.existsByUserName(userName)) {
+		if (freelancerDao.existsByUserName(userName)) {
 			return freelancerDao.findByUserName(userName);
-		}else {
+		} else {
 			throw new InvalidFreelancerException();
 		}
+	}
+
+	@Override
+	public List<Freelancer> listFreelancers() {
+		return freelancerDao.findAll();
 	}
 
 }

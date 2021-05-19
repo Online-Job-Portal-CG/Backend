@@ -52,12 +52,10 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 		BookmarkedFreelancer bookmarkedFreelancer = new BookmarkedFreelancer();
 
 		if (recruiterDao.existsById(bookmarkedFreelancerDto.getRecruiterId())
-				&& freelancerDao.existsById(bookmarkedFreelancerDto.getFreelancerId())
-				&& skillDao.existsById(bookmarkedFreelancerDto.getSkillId())) {
+				&& freelancerDao.existsById(bookmarkedFreelancerDto.getFreelancerId())) {
 
 			bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
 			bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
-			bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
 
 			return bookmarkedFreelancerDao.save(bookmarkedFreelancer);
 		} else
@@ -83,25 +81,7 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 
 	}
 
-	/**************************************************************************** 
-	 * Method     : findBookmarkedFreelancerBySkillName
-	 * @param       skillName
-	 * @throws      InvalidBookmarkedFreelancerException 
-	 * @return      List<BookmarkedFreelancers>
-	 * Description: The method finds a bookmarked freelancer by the skill name, 
-	 *              and returns a list.
-	 ***************************************************************************/
-	@Override
-	public List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillName) {
-		if (skillDao.existsByName(skillName)) {
-
-			Skill skill = skillDao.findByName(skillName);
-
-			return bookmarkedFreelancerDao.findBookmarkedFreelancerBySkill(skill);
-		} else
-			throw new InvalidBookmarkedFreelancerException();
-	}
-
+	
 	/**************************************************************************************
 	 * Method     : findById
 	 * @param       id
@@ -134,8 +114,12 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 		BookmarkedFreelancer bookmarkedFreelancer = new BookmarkedFreelancer();
 		bookmarkedFreelancer.setBookmarkedBy(recruiterDao.findById(bookmarkedFreelancerDto.getRecruiterId()).get());
 		bookmarkedFreelancer.setFreelancer(freelancerDao.findById(bookmarkedFreelancerDto.getFreelancerId()).get());
-		bookmarkedFreelancer.setSkill(skillDao.findById(bookmarkedFreelancerDto.getSkillId()).get());
 		return bookmarkedFreelancerDao.save(bookmarkedFreelancer);
+	}
+
+	@Override
+	public List<BookmarkedFreelancerDTO> getAll() {
+		return bookmarkedFreelancerDao.findAllDTO();
 	}
 
 }

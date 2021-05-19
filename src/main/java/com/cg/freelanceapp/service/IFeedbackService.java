@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.FeedbackDTO;
 import com.cg.freelanceapp.entities.Feedback;
-import com.cg.freelanceapp.entities.Freelancer;
 
 @Service
 public interface IFeedbackService {
 
-	int averageRating(Freelancer freelancer);
+	Float averageRating(Long id);
 
 	Feedback createFeedback(FeedbackDTO feedbackDto);
 

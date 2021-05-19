@@ -2,6 +2,7 @@ package com.cg.freelanceapp.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,9 @@ import javax.persistence.SequenceGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**************************************************************************************
  * @author       Vishnuvardhan 
  * Description : This is the Entity class for Job module. 
@@ -26,6 +30,7 @@ import org.hibernate.annotations.OnDeleteAction;
  * Version     : v1.0.0
  *************************************************************************************/
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Job implements Serializable {
 
 	private static final long serialVersionUID = -7946011744287965252L;
@@ -45,7 +50,7 @@ public class Job implements Serializable {
 	@JoinColumn(name = "recruiter_id")
 	private Recruiter postedBy;
 
-	private LocalDate postedDate;
+	private LocalDate postedDate = LocalDate.now(ZoneId.of("GMT+05:30"));
 
 	@OneToOne(targetEntity = Freelancer.class, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@OnDelete(action = OnDeleteAction.CASCADE)

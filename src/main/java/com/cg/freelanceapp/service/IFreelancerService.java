@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
@@ -25,4 +27,6 @@ public interface IFreelancerService {
 	Freelancer update(@Valid Long id, FreelancerDTO freelancerDto);
 
 	Freelancer findByUserName(String userName);
+	
+	List<Freelancer> listFreelancers();
 }

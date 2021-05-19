@@ -20,9 +20,9 @@ public interface IBookmarkedFreelancerService {
 
 	void deleteBookmarkedFreelancerById(Long id);
 
-	List<BookmarkedFreelancer> findBookmarkedFreelancersBySkillName(String skillname);
-
 	BookmarkedFreelancer findById(Long id);
+	
+	List<BookmarkedFreelancerDTO> getAll();
 
 	Long getCurrentId();
 

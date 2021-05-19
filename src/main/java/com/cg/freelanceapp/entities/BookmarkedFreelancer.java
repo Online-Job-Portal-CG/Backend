@@ -38,17 +38,14 @@ public class BookmarkedFreelancer implements Serializable {
 	@Column(name = "bkd_fr_id", updatable = false)
 	private Long id;
 
-	@OneToOne(targetEntity = Skill.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "skill_id")
-	private Skill skill;
-
-	@OneToOne(targetEntity = Freelancer.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@OneToOne(targetEntity = Freelancer.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH })
 	@JoinColumn(name = "freelancer_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Freelancer freelancer;
 
-	@ManyToOne(targetEntity = Recruiter.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(targetEntity = Recruiter.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH })
 	@JoinColumn(name = "recruiter_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Recruiter bookmarkedBy;
@@ -57,11 +54,9 @@ public class BookmarkedFreelancer implements Serializable {
 		super();
 	}
 
-	public BookmarkedFreelancer(@NotNull(message = "Skill id should not be empty.") Skill skill,
-			@NotNull(message = "Freelancer id should not be empty.") Freelancer freelancer,
+	public BookmarkedFreelancer(@NotNull(message = "Freelancer id should not be empty.") Freelancer freelancer,
 			@NotNull(message = "Recruiter id should not be empty.") Recruiter bookmarkedBy) {
 		super();
-		this.skill = skill;
 		this.freelancer = freelancer;
 		this.bookmarkedBy = bookmarkedBy;
 	}
@@ -78,10 +73,6 @@ public class BookmarkedFreelancer implements Serializable {
 		return id;
 	}
 
-	public Skill getSkill() {
-		return skill;
-	}
-
 	public void setBookmarkedBy(Recruiter bookmarkedBy) {
 		this.bookmarkedBy = bookmarkedBy;
 	}
@@ -92,10 +83,6 @@ public class BookmarkedFreelancer implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setSkill(Skill skill) {
-		this.skill = skill;
 	}
 
 }
