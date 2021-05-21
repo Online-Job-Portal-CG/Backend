@@ -11,6 +11,7 @@ import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dao.ISkillDao;
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
+import com.cg.freelanceapp.dto.BookmarkedFreelancerListDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
 import com.cg.freelanceapp.entities.Skill;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedFreelancerException;
@@ -118,7 +119,7 @@ public class BookmarkedFreelancerServiceImpl implements IBookmarkedFreelancerSer
 	}
 
 	@Override
-	public List<BookmarkedFreelancerDTO> getAll() {
+	public List<BookmarkedFreelancerListDTO> getAll() {
 		return bookmarkedFreelancerDao.findAllDTO();
 	}
 

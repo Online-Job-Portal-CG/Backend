@@ -41,6 +41,10 @@ public class Job implements Serializable {
 	@SequenceGenerator(name = "job_seq", sequenceName = "job_seq", allocationSize = 1)
 	private Long id;
 
+	private String jobTitle;
+
+	private String jobDescription;
+
 	@OneToOne(targetEntity = Skill.class, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Skill skill;
@@ -67,10 +71,12 @@ public class Job implements Serializable {
 		super();
 	}
 
-	public Job(Long id, Skill skill, Recruiter postedBy, LocalDate postedDate, Freelancer awardedTo,
-			List<JobApplication> jobApplications, Boolean active) {
+	public Job(Long id, String jobTitle, String jobDescription, Skill skill, Recruiter postedBy, LocalDate postedDate,
+			Freelancer awardedTo, List<JobApplication> jobApplications, Boolean active) {
 		super();
 		this.id = id;
+		this.jobTitle = jobTitle;
+		this.jobDescription = jobDescription;
 		this.skill = skill;
 		this.postedBy = postedBy;
 		this.postedDate = postedDate;
@@ -89,6 +95,18 @@ public class Job implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	public List<JobApplication> getJobApplications() {
+		return jobApplications;
+	}
+
+	public String getJobDescription() {
+		return jobDescription;
+	}
+
+	public String getJobTitle() {
+		return jobTitle;
 	}
 
 	public Recruiter getPostedBy() {
@@ -115,16 +133,20 @@ public class Job implements Serializable {
 		this.id = id;
 	}
 
-	public void setPostedBy(Recruiter postedBy) {
-		this.postedBy = postedBy;
-	}
-
-	public List<JobApplication> getJobApplications() {
-		return jobApplications;
-	}
-
 	public void setJobApplications(List<JobApplication> jobApplications) {
 		this.jobApplications = jobApplications;
+	}
+
+	public void setJobDescription(String jobDescription) {
+		this.jobDescription = jobDescription;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+
+	public void setPostedBy(Recruiter postedBy) {
+		this.postedBy = postedBy;
 	}
 
 	public void setPostedDate(LocalDate postedDate) {
@@ -134,5 +156,6 @@ public class Job implements Serializable {
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 	}
+	
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.BookmarkedFreelancerDTO;
+import com.cg.freelanceapp.dto.BookmarkedFreelancerListDTO;
 import com.cg.freelanceapp.entities.BookmarkedFreelancer;
 
 /**************************************************************************************
@@ -22,7 +23,7 @@ public interface IBookmarkedFreelancerService {
 
 	BookmarkedFreelancer findById(Long id);
 	
-	List<BookmarkedFreelancerDTO> getAll();
+	List<BookmarkedFreelancerListDTO> getAll();
 
 	Long getCurrentId();
 

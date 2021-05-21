@@ -28,11 +28,10 @@ import com.cg.freelanceapp.service.IBookmarkedJobService;
 @RestController
 @RequestMapping("/bmark/job")
 @CrossOrigin(origins = "*")
-public class BookmarkedJobController 
-{
+public class BookmarkedJobController {
 	@Autowired
 	IBookmarkedJobService bookmarkedJobService;
-	
+
 	/**
 	 * 
 	 * Method     : createBookmark
@@ -43,8 +42,8 @@ public class BookmarkedJobController
 	 * @PostMapping: This annotation handles with http post requests matched with the given url expression.  
 	 */
 	@PostMapping("/add")
-	public ResponseEntity<Object> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,BindingResult bindingResult)
-	{
+	public ResponseEntity<Object> createBookmark(@Valid @RequestBody BookmarkedJobDTO bookmarkedjobdto,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			System.out.println("Some errors exist!");
 			List<FieldError> fieldErrors = bindingResult.getFieldErrors();
@@ -60,11 +59,10 @@ public class BookmarkedJobController
 		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("One or more entered fields contain invalid objects.");
 		}
-		return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
-	
-		
+		return new ResponseEntity<>("Added successfully", HttpStatus.OK);
+
 	}
-	
+
 	/**
 	 * 
 	 * Method     : deleteById
@@ -79,12 +77,12 @@ public class BookmarkedJobController
 	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
 		try {
 			bookmarkedJobService.remove(id);
-		}catch(InvalidBookmarkedJobException exception) {
+		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No bookmark with specified id exists.");
 		}
 		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
-	
+
 	/**
 	 * 
 	 * Method     : getById
@@ -94,17 +92,17 @@ public class BookmarkedJobController
 	 * Description: returns the status.
 	 * GetMapping: This annotation handles with http get requests matched with the given url expression.  
 	 */
-	
+
 	@GetMapping("/get/id/{id}")
 	public ResponseEntity<Object> getById(@Valid @PathVariable Long id) {
 		try {
 			BookmarkedJob bookmarkedJob = bookmarkedJobService.findById(id);
 			return new ResponseEntity<>(bookmarkedJob, HttpStatus.OK);
-		} catch(InvalidBookmarkedJobException exception) {
+		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No Bookmark with specified id.");
 		}
 	}
-	
+
 	/**
 	 * 
 	 * Method     : getBySkill
@@ -114,15 +112,20 @@ public class BookmarkedJobController
 	 * Description: returns the status.
 	 * @GettMapping: This annotation handles with http get requests matched with the given url expression.  
 	 */
- 
+
 	@GetMapping("/get/skill/{skillName}")
 	public List<BookmarkedJob> listJobsBySkill(@Valid @PathVariable String skillName) {
 		try {
 			List<BookmarkedJob> bookmarkedJobs = bookmarkedJobService.findBookmarkedJobsBySkillName(skillName);
 			return bookmarkedJobs;
-		}catch(InvalidBookmarkedJobException exception) {
+		} catch (InvalidBookmarkedJobException exception) {
 			throw new InvalidBookmarkedJobException("No bookmarks found for the specified skill name");
 		}
+	}
+
+	@GetMapping("findAll")
+	public ResponseEntity<Object> findAll() {
+		return new ResponseEntity<>(bookmarkedJobService.findAllBookmarks(), HttpStatus.OK);
 	}
 
 }

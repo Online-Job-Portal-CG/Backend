@@ -38,8 +38,13 @@ public class JobApplication implements Serializable {
 			CascadeType.DETACH })
 	@JoinColumn(name = "job_id")
 	private Job job;
+	
+	@ManyToOne(targetEntity = Freelancer.class, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH })
+	@JoinColumn(name="freelancer_id")
+	private Freelancer freelancer;
 
-	private LocalDateTime appliedDate;
+	private LocalDateTime appliedDate = LocalDateTime.now();
 
 	private String coverLetter;
 
@@ -85,5 +90,14 @@ public class JobApplication implements Serializable {
 	public void setJob(Job job) {
 		this.job = job;
 	}
+
+	public Freelancer getFreelancer() {
+		return freelancer;
+	}
+
+	public void setFreelancer(Freelancer freelancer) {
+		this.freelancer = freelancer;
+	}
+	
 
 }

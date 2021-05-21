@@ -24,21 +24,22 @@ public class FeedbackController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Object> addFeedback(FeedbackDTO feedbackDto) {
+		System.out.println(feedbackDto);
 		feedbackService.createFeedback(feedbackDto);
 		return new ResponseEntity<>("Feedback Added Successfully", HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{freelancerId}")
-	public ResponseEntity<Object> getFeedbackForFreelancer(@PathVariable Long freelancerId) {
+	@GetMapping("/get/{freelancerUId}")
+	public ResponseEntity<Object> getFeedbackForFreelancer(@PathVariable String freelancerUId) {
 		try {
-			return new ResponseEntity<>(feedbackService.findFeedbacksByFreelancer(freelancerId), HttpStatus.OK);
+			return new ResponseEntity<>(feedbackService.findFeedbacksByFreelancer(freelancerUId), HttpStatus.OK);
 		} catch (InvalidFeedbackException exception) {
 			throw new InvalidFeedbackException("Freelancer with given Id not found");
 		}
 	}
 
 	@GetMapping("/get/avgRatingsFor/{id}")
-	public ResponseEntity<Object> getAverageRatings(@PathVariable Long id) {
+	public ResponseEntity<Object> getAverageRatings(@PathVariable String id) {
 		try {
 			return new ResponseEntity<>(feedbackService.averageRating(id), HttpStatus.OK);
 		} catch (InvalidFeedbackException exception) {

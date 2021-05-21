@@ -11,6 +11,7 @@ import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dao.IJobDao;
 import com.cg.freelanceapp.dao.ISkillDao;
 import com.cg.freelanceapp.dto.BookmarkedJobDTO;
+import com.cg.freelanceapp.dto.BookmarkedJobListDTO;
 import com.cg.freelanceapp.entities.BookmarkedJob;
 import com.cg.freelanceapp.entities.Skill;
 import com.cg.freelanceapp.exceptions.InvalidBookmarkedJobException;
@@ -133,6 +134,10 @@ public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
 		{
 			throw new InvalidBookmarkedJobException();
 		}
+	}
+	@Override
+	public List<BookmarkedJobListDTO> findAllBookmarks() {
+		return bookmarkedjobdao.findAllBookmarks();
 	}
 	
 	

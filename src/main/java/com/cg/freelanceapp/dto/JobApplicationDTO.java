@@ -8,15 +8,18 @@ public class JobApplicationDTO {
 	private Long jobId;
 	@NotEmpty(message = "Cover Letter cannot be empty")
 	private String coverLetter;
-
+	
+	private Long freelancerId;
+	
 	public JobApplicationDTO() {
 		super();
 	}
 
-	public JobApplicationDTO(Long jobId, String coverLetter) {
+	public JobApplicationDTO(Long jobId, String coverLetter, Long freelancerId) {
 		super();
 		this.jobId = jobId;
 		this.coverLetter = coverLetter;
+		this.freelancerId = freelancerId;
 	}
 
 	public String getCoverLetter() {
@@ -34,5 +37,14 @@ public class JobApplicationDTO {
 	public void setJobId(Long jobId) {
 		this.jobId = jobId;
 	}
+
+	public Long getFreelancerId() {
+		return freelancerId;
+	}
+
+	public void setFreelancerId(Long freelancerId) {
+		this.freelancerId = freelancerId;
+	}
+	
 
 }

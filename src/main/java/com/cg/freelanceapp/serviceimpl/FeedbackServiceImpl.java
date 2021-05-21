@@ -9,6 +9,7 @@ import com.cg.freelanceapp.dao.IFeedbackDao;
 import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dto.FeedbackDTO;
+import com.cg.freelanceapp.dto.FeedbackListDTO;
 import com.cg.freelanceapp.entities.Feedback;
 import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.entities.Recruiter;
@@ -28,20 +29,20 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	IFreelancerDao freelancerDao;
 
 	@Override
-	public Float averageRating(Long id) {
-		if (freelancerDao.existsById(id)) {
+	public Float averageRating(String id) {
+		if (freelancerDao.existsByUserName(id)) {
 			return feedbackDao.averageRatings(id);
 		}else throw new InvalidFeedbackException();
 	}
 
 	@Override
 	public Feedback createFeedback(FeedbackDTO feedbackDto) {
-
-		if (recruiterDao.existsById(feedbackDto.getRecruiterId())
-				&& freelancerDao.existsById(feedbackDto.getFreelancerId())) {
-
-			Recruiter recruiter = recruiterDao.findById(feedbackDto.getRecruiterId()).get();
-			Freelancer freelancer = freelancerDao.findById(feedbackDto.getFreelancerId()).get();
+		System.out.println(feedbackDto.getComments());
+		if (recruiterDao.existsByUserName(feedbackDto.getRecruiterId())
+				&& freelancerDao.existsByUserName(feedbackDto.getFreelancerId())) {
+			
+			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterId());
+			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerId());
 			Feedback feedback = new Feedback();
 
 			feedback.setComment(feedbackDto.getComments());
@@ -56,9 +57,9 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public List<Feedback> findFeedbacksByFreelancer(Long id) {
+	public List<FeedbackListDTO> findFeedbacksByFreelancer(String uId) {
 
-		return feedbackDao.findFeedbacksByFreelancerId(id);
+		return feedbackDao.findFeedbacksByFreelancerId(uId);
 	}
 
 }

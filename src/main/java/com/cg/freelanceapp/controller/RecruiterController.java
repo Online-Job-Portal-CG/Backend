@@ -83,5 +83,10 @@ public class RecruiterController {
 		}
 		return new ResponseEntity<>("Updated Recruiter Successfully", HttpStatus.OK);
 	}
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<Object> findAll(){
+		return new ResponseEntity<>(recruiterService.findAll(), HttpStatus.OK);
+	}
 
 }

@@ -14,7 +14,13 @@ public interface IJobService {
 
 	Job findById(Long id);
 	
-	List<Job> findJobsBySkillName(String name);
+	List<Object> findJobsBySkillName(String name);
+	
+	List<Object> findAll();
+	
+	List<Object> findAllActiveJobs();
 	
 	Job postJob(JobDTO jobDto);
+	
+	void awardJob(Long jobId, Long freelancerId);
 }

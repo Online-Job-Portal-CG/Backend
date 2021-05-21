@@ -10,6 +10,7 @@ import com.cg.freelanceapp.dao.IJobDao;
 import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dao.ISkillDao;
 import com.cg.freelanceapp.dto.JobDTO;
+import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.entities.Job;
 import com.cg.freelanceapp.exceptions.InvalidJobException;
 import com.cg.freelanceapp.service.IJobService;
@@ -58,9 +59,9 @@ public class JobServiceImpl implements IJobService {
 
 	@Override
 
-	public List<Job> findJobsBySkillName(String name) {
+	public List<Object> findJobsBySkillName(String name) {
 		if (skillDao.existsByName(name)) {
-			return jobdao.findJobBySkillName(name);
+			return jobdao.findBySkill(name);
 		} else {
 			throw new InvalidJobException();
 		}
@@ -76,9 +77,30 @@ public class JobServiceImpl implements IJobService {
 			job.setAwardedTo(freelancerDao.findById(jobdto.getFreelancerid()).get());
 			job.setSkill(skillDao.findById(jobdto.getSkillId()).get());
 			job.setActive(true);
+			job.setJobTitle(jobdto.getJobTitle());
+			job.setJobDescription(jobdto.getJobDescription());
 			return jobdao.save(job);
 		} else
 			throw new InvalidJobException();
+	}
+
+	@Override
+	public List<Object> findAll() {
+		return jobdao.findAllDTO();
+	}
+
+	@Override
+	public void awardJob(Long jobId, Long freelancerId) {
+		Job job = jobdao.findById(jobId).get();
+		Freelancer freelancer = freelancerDao.findById(freelancerId).get();
+		job.setAwardedTo(freelancer);
+		jobdao.saveAndFlush(job);
+		
+	}
+
+	@Override
+	public List<Object> findAllActiveJobs() {
+		return jobdao.findAllActiveDTO();
 	}
 
 }

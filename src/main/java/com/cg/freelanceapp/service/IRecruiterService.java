@@ -1,5 +1,7 @@
 package com.cg.freelanceapp.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.RecruiterDTO;
@@ -23,4 +25,6 @@ public interface IRecruiterService {
 	Recruiter update(Long id, RecruiterDTO recruiterDto);
 	
 	Recruiter findByUserName(String userName);
+	
+	List<Recruiter> findAll();
 }

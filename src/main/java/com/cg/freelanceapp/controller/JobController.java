@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.freelanceapp.dto.JobDTO;
@@ -82,6 +83,7 @@ public class JobController {
 	 */
 
 	@GetMapping(value = "/findJobsBySkill/{name}")
+	@ResponseBody
 	public ResponseEntity<Object> findbyskill(@PathVariable String name) {
 		try {
 			return new ResponseEntity<>(jobService.findJobsBySkillName(name), HttpStatus.OK);
@@ -104,7 +106,25 @@ public class JobController {
 	public ResponseEntity<Object> job(@RequestBody JobDTO jobDto) {
 
 		jobService.postJob(jobDto);
-		return new ResponseEntity<>("Job Posted Successfully", HttpStatus.ACCEPTED);
+		return new ResponseEntity<>("Job Posted Successfully", HttpStatus.OK);
+	}
+
+	@GetMapping("/findAll")
+	public ResponseEntity<Object> findAll() {
+		return new ResponseEntity<>(jobService.findAll(), HttpStatus.OK);
+	}
+
+	@PutMapping("/awardJob/{jobId}/{freelancerId}")
+	public ResponseEntity<String> awardJob(@PathVariable Long jobId, @PathVariable Long freelancerId) {
+		jobService.awardJob(jobId, freelancerId);
+		String response = "Job Awarded Successfully";
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getAllActive")
+	public ResponseEntity<Object> getAllActiveJobs() {
+		return new ResponseEntity<>(jobService.findAllActiveJobs(), HttpStatus.OK);
+		
 	}
 
 }

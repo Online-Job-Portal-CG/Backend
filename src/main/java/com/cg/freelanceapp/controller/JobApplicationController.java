@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.freelanceapp.dto.JobApplicationDTO;
+import com.cg.freelanceapp.dto.JobApplicationsListDTO;
 import com.cg.freelanceapp.entities.JobApplication;
 import com.cg.freelanceapp.exceptions.InvalidJobApplicationException;
 import com.cg.freelanceapp.exceptions.InvalidJobException;
@@ -89,10 +90,10 @@ public class JobApplicationController {
 	 *               that is fetched from the database.
 	 ************************************************************************************/
 	
-	@GetMapping(value = "/findById/{id}")
-	public JobApplication findById(@Valid @PathVariable Long id) {
+	@GetMapping(value = "/findAll")
+	public ResponseEntity<Object> findAll() {
 		try {
-		return jobApplicationService.findById(id);
+		return new ResponseEntity<>(jobApplicationService.findAll(), HttpStatus.OK);
 		}catch(InvalidJobApplicationException e) {
 			throw new InvalidJobApplicationException("Job Application Id Not Found");
 		}
@@ -145,6 +146,16 @@ public class JobApplicationController {
 		return new ResponseEntity<>("job application updated successfully",HttpStatus.OK);
 		}catch(InvalidJobApplicationException e){
 			throw new InvalidJobApplicationException("Invalid Job Application Id");
+		}
+	}
+	
+	@GetMapping(value="/findAll/job/{jobId}")
+	public ResponseEntity<Object> findAllApplications(@PathVariable Long jobId){
+		try {
+			return new ResponseEntity<>(jobApplicationService.findAllByJobId(jobId),HttpStatus.OK);
+		}
+		catch(InvalidJobApplicationException e) {
+			throw new InvalidJobApplicationException("Job with given Id not found");
 		}
 	}
 	
