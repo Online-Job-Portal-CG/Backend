@@ -36,13 +36,13 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public Feedback createFeedback(FeedbackDTO feedbackDto) {
-		System.out.println(feedbackDto.getComments());
-		if (recruiterDao.existsByUserName(feedbackDto.getRecruiterId())
-				&& freelancerDao.existsByUserName(feedbackDto.getFreelancerId())) {
+	public Feedback addFeedback(FeedbackDTO feedbackDto) {
+		System.out.println(feedbackDto.toString());
+		if (recruiterDao.existsByUserName(feedbackDto.getRecruiterUName())
+				&& freelancerDao.existsByUserName(feedbackDto.getFreelancerUName())) {
 			
-			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterId());
-			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerId());
+			Recruiter recruiter = recruiterDao.findByUserName(feedbackDto.getRecruiterUName());
+			Freelancer freelancer = freelancerDao.findByUserName(feedbackDto.getFreelancerUName());
 			Feedback feedback = new Feedback();
 
 			feedback.setComment(feedbackDto.getComments());
@@ -57,9 +57,9 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	}
 
 	@Override
-	public List<FeedbackListDTO> findFeedbacksByFreelancer(String uId) {
+	public List<FeedbackListDTO> findFeedbacksForFreelancerByRecruiter(String fId, String rId) {
 
-		return feedbackDao.findFeedbacksByFreelancerId(uId);
+		return feedbackDao.findFeedbacksForFreelancerByRecruiterId(fId, rId);
 	}
 
 }

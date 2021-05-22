@@ -13,7 +13,7 @@ public interface IFeedbackService {
 
 	Float averageRating(String id);
 
-	Feedback createFeedback(FeedbackDTO feedbackDto);
+	Feedback addFeedback(FeedbackDTO feedbackDto);
 
-	List<FeedbackListDTO> findFeedbacksByFreelancer(String uId);
+	List<FeedbackListDTO> findFeedbacksForFreelancerByRecruiter(String fId, String rId);
 }

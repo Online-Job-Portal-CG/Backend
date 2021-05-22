@@ -9,19 +9,19 @@ package com.cg.freelanceapp.dto;
 public class FeedbackDTO {
 	private Integer ranges;
 	private String comments;
-	private String recruiterId;
-	private String freelancerId;
+	private String recruiterUName;
+	private String freelancerUName;
 
 	public FeedbackDTO() {
 		super();
 	}
 
-	public FeedbackDTO(Integer ranges, String comments, String recruiterId, String freelancerId) {
+	public FeedbackDTO(Integer ranges, String comments, String recruiterUName, String freelancerUName) {
 		super();
 		this.ranges = ranges;
 		this.comments = comments;
-		this.recruiterId = recruiterId;
-		this.freelancerId = freelancerId;
+		this.recruiterUName = recruiterUName;
+		this.freelancerUName = freelancerUName;
 	}
 
 	public Integer getRanges() {
@@ -40,20 +40,27 @@ public class FeedbackDTO {
 		this.comments = comments;
 	}
 
-	public String getRecruiterId() {
-		return recruiterId;
+	public String getRecruiterUName() {
+		return recruiterUName;
 	}
 
-	public void setRecruiterId(String recruiterId) {
-		this.recruiterId = recruiterId;
+	public void setRecruiterUName(String recruiterUName) {
+		this.recruiterUName = recruiterUName;
 	}
 
-	public String getFreelancerId() {
-		return freelancerId;
+	public String getFreelancerUName() {
+		return freelancerUName;
 	}
 
-	public void setFreelancerId(String freelancerId) {
-		this.freelancerId = freelancerId;
+	public void setFreelancerUName(String freelancerUName) {
+		this.freelancerUName = freelancerUName;
 	}
+
+	@Override
+	public String toString() {
+		return "FeedbackDTO [ranges=" + ranges + ", comments=" + comments + ", recruiterUName=" + recruiterUName
+				+ ", freelancerUName=" + freelancerUName + "]";
+	}
+	
 
 }

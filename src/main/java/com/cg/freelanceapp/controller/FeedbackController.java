@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,16 +24,15 @@ public class FeedbackController {
 	IFeedbackService feedbackService;
 
 	@PostMapping("/add")
-	public ResponseEntity<Object> addFeedback(FeedbackDTO feedbackDto) {
-		System.out.println(feedbackDto);
-		feedbackService.createFeedback(feedbackDto);
+	public ResponseEntity<Object> addFeedback(@RequestBody FeedbackDTO feedbackDto) {
+		feedbackService.addFeedback(feedbackDto);
 		return new ResponseEntity<>("Feedback Added Successfully", HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{freelancerUId}")
-	public ResponseEntity<Object> getFeedbackForFreelancer(@PathVariable String freelancerUId) {
+	@GetMapping("/get/freelancer/{freelancerUId}/recruiter/{recruiterId}")
+	public ResponseEntity<Object> getFeedbackForFreelancerByRecruiter(@PathVariable String freelancerUId, @PathVariable String recruiterId) {
 		try {
-			return new ResponseEntity<>(feedbackService.findFeedbacksByFreelancer(freelancerUId), HttpStatus.OK);
+			return new ResponseEntity<>(feedbackService.findFeedbacksForFreelancerByRecruiter(freelancerUId, recruiterId), HttpStatus.OK);
 		} catch (InvalidFeedbackException exception) {
 			throw new InvalidFeedbackException("Freelancer with given Id not found");
 		}
