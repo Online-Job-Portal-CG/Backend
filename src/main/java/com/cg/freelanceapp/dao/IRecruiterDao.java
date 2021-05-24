@@ -31,6 +31,6 @@ public interface IRecruiterDao extends JpaRepository<Recruiter, Long> {
 
 	public boolean existsByUserName(String userName);
 	
-	@Query("select new com.cg.freelanceapp.dto.RecruiterListDTO(r.id, r.firstName, r.lastName, r.userName, r.password) from Recruiter r")
+	@Query("select new com.cg.freelanceapp.dto.RecruiterListDTO(r.id, r.userName, r.firstName, r.lastName, r.password) from Recruiter r")
 	public List<RecruiterListDTO> findAllRecruiters();
 }

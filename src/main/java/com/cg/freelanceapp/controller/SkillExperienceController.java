@@ -75,10 +75,12 @@ public class SkillExperienceController {
 
 	@PutMapping("/update/freelancer/{freelancerId}/skill/{id}")
 	public ResponseEntity<Object> updateSkillYears(@PathVariable Long id, @PathVariable Long freelancerId,
-			@RequestParam Integer years) {
+			@RequestParam(value = "years") Integer years) {
+		System.out.println(years);
 		try {
 			skillExperienceService.updateSkillYears(id, freelancerId, years);
-			return new ResponseEntity<>("Updated records successfully", HttpStatus.OK);
+			String response = "Updated records successfully";
+			return new ResponseEntity<>(response, HttpStatus.OK);
 		} catch (InvalidSkillExperienceException e) {
 			throw new InvalidSkillExperienceException("Cannot find skillExperience with given id");
 		}

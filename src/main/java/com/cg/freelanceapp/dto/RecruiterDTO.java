@@ -62,4 +62,11 @@ public class RecruiterDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+	@Override
+	public String toString() {
+		return "RecruiterDTO [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + "]";
+	}
+	
 }

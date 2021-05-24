@@ -47,6 +47,7 @@ public class RecruiterServiceImpl implements IRecruiterService {
 
 	@Override
 	public Recruiter save(RecruiterDTO recruiterDto) {
+		System.out.println(recruiterDto);
 		Recruiter recruiter = new Recruiter();
 		recruiter.setFirstName(recruiterDto.getFirstName());
 		recruiter.setLastName(recruiterDto.getLastName());

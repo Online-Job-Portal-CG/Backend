@@ -36,7 +36,7 @@ public class RecruiterController {
 	@PostMapping("/add")
 	public ResponseEntity<Object> createRecruiter(@Valid @RequestBody RecruiterDTO recruiterDto,
 			BindingResult bindingResult) {
-
+		
 		if (bindingResult.hasErrors()) {
 			System.out.println("Some errors exist!");
 			List<FieldError> fieldErrors = bindingResult.getFieldErrors();
