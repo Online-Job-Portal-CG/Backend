@@ -51,6 +51,7 @@ public class AdminController {
 
 	@PostMapping("/save")
 	public ResponseEntity<Object> adminSave(@Valid @RequestBody AdminDTO adminDto, BindingResult bindingResult) {
+		System.out.println(adminDto.toString());
 		if (bindingResult.hasErrors()) {
 			System.out.println("Some errors exist!");
 			List<FieldError> fieldErrors = bindingResult.getFieldErrors();

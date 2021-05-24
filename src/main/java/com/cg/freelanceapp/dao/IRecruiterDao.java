@@ -1,9 +1,12 @@
 package com.cg.freelanceapp.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.cg.freelanceapp.dto.RecruiterListDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 
 /**************************************************************************************
@@ -27,4 +30,7 @@ public interface IRecruiterDao extends JpaRepository<Recruiter, Long> {
 	public Recruiter findByUserName(String userName);
 
 	public boolean existsByUserName(String userName);
+	
+	@Query("select new com.cg.freelanceapp.dto.RecruiterListDTO(r.id, r.firstName, r.lastName, r.userName, r.password) from Recruiter r")
+	public List<RecruiterListDTO> findAllRecruiters();
 }

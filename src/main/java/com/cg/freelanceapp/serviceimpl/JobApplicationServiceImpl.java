@@ -39,7 +39,7 @@ public class JobApplicationServiceImpl implements IJobApplicationService {
 	@Override
 	public JobApplication applyToJob(JobApplicationDTO jobApplicationDto) {
 		JobApplication jobApplication = new JobApplication();
-		if (!(jobApplicationDto.getFreelancerId() == null) || !jobApplicationDto.getCoverLetter().isEmpty()
+		if ((jobApplicationDto.getFreelancerId() != null) || !jobApplicationDto.getCoverLetter().isEmpty()
 				|| jobApplicationDto.getJobId() != null) {
 			
 			jobApplication.setCoverLetter(jobApplicationDto.getCoverLetter());
@@ -89,6 +89,11 @@ public class JobApplicationServiceImpl implements IJobApplicationService {
 	@Override
 	public List<JobApplicationsListDTO> findAllByJobId(Long jobId) {
 		return jobApplicationDao.findAllByJobId(jobId);
+	}
+
+	@Override
+	public List<JobApplicationsListDTO> findByFreelancerId(Long jobId, Long freelancerId) {
+		return jobApplicationDao.findByFreelancerId(jobId, freelancerId);
 	}
 
 }

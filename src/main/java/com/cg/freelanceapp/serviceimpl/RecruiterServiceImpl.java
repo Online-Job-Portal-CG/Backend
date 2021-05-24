@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IRecruiterDao;
 import com.cg.freelanceapp.dto.RecruiterDTO;
+import com.cg.freelanceapp.dto.RecruiterListDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 import com.cg.freelanceapp.exceptions.InvalidRecruiterException;
 import com.cg.freelanceapp.service.IRecruiterService;
@@ -81,7 +82,7 @@ public class RecruiterServiceImpl implements IRecruiterService {
 	}
 
 	@Override
-	public List<Recruiter> findAll(){
-		return recruiterDao.findAll();
+	public List<RecruiterListDTO> findAll(){
+		return recruiterDao.findAllRecruiters();
 	}
 }

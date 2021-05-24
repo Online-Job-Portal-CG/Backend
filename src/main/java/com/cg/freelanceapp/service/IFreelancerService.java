@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.FreelancerDTO;
+import com.cg.freelanceapp.dto.FreelancerListDTO;
 import com.cg.freelanceapp.entities.Freelancer;
 
 /**************************************************************************************
@@ -28,5 +29,5 @@ public interface IFreelancerService {
 
 	Freelancer findByUserName(String userName);
 	
-	List<Freelancer> listFreelancers();
+	List<FreelancerListDTO> listFreelancers();
 }

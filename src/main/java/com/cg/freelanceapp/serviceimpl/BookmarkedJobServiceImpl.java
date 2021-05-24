@@ -135,9 +135,11 @@ public class BookmarkedJobServiceImpl implements IBookmarkedJobService {
 			throw new InvalidBookmarkedJobException();
 		}
 	}
+	
+	
 	@Override
-	public List<BookmarkedJobListDTO> findAllBookmarks() {
-		return bookmarkedjobdao.findAllBookmarks();
+	public List<BookmarkedJobListDTO> findAllBookmarks(Long frId) {
+		return bookmarkedjobdao.findAllBookmarks(frId);
 	}
 	
 	

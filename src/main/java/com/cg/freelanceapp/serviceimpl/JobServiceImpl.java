@@ -74,7 +74,7 @@ public class JobServiceImpl implements IJobService {
 		if (recruiterDao.existsById(jobdto.getRecruiterId()) && freelancerDao.existsById(jobdto.getFreelancerid())
 				&& skillDao.existsById(jobdto.getSkillId())) {
 			job.setPostedBy(recruiterDao.findById(jobdto.getRecruiterId()).get());
-			job.setAwardedTo(freelancerDao.findById(jobdto.getFreelancerid()).get());
+			job.setAwardedTo(freelancerDao.findById(2L).get());
 			job.setSkill(skillDao.findById(jobdto.getSkillId()).get());
 			job.setActive(true);
 			job.setJobTitle(jobdto.getJobTitle());

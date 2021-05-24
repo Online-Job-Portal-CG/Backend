@@ -27,4 +27,6 @@ public interface IJobApplicationService {
 	JobApplication updateJobApplication(Long id,JobApplicationDTO jobApplicationDto);
 	
 	List<JobApplicationsListDTO> findAllByJobId(Long jobId);
+	
+	List<JobApplicationsListDTO> findByFreelancerId(Long jobId, Long freelancerId);
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.freelanceapp.dao.IFreelancerDao;
 import com.cg.freelanceapp.dto.FreelancerDTO;
+import com.cg.freelanceapp.dto.FreelancerListDTO;
 import com.cg.freelanceapp.entities.Freelancer;
 import com.cg.freelanceapp.exceptions.InvalidFreelancerException;
 import com.cg.freelanceapp.service.IFreelancerService;
@@ -83,8 +84,8 @@ public class FreelancerServiceImpl implements IFreelancerService {
 	}
 
 	@Override
-	public List<Freelancer> listFreelancers() {
-		return freelancerDao.findAll();
+	public List<FreelancerListDTO> listFreelancers() {
+		return freelancerDao.findAllFreelancers();
 	}
 
 }

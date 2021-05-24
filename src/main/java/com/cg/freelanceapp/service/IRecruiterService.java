@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.freelanceapp.dto.RecruiterDTO;
+import com.cg.freelanceapp.dto.RecruiterListDTO;
 import com.cg.freelanceapp.entities.Recruiter;
 
 /**************************************************************************************
@@ -26,5 +27,5 @@ public interface IRecruiterService {
 	
 	Recruiter findByUserName(String userName);
 	
-	List<Recruiter> findAll();
+	List<RecruiterListDTO> findAll();
 }

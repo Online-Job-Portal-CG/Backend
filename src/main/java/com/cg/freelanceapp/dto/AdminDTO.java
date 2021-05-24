@@ -63,4 +63,10 @@ public class AdminDTO {
 		this.userName = userName;
 	}
 
+	@Override
+	public String toString() {
+		return "AdminDTO [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName + ", password="
+				+ password + "]";
+	}
+
 }

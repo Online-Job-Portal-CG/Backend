@@ -45,6 +45,12 @@ public class JobApplicationDTO {
 	public void setFreelancerId(Long freelancerId) {
 		this.freelancerId = freelancerId;
 	}
+
+	@Override
+	public String toString() {
+		return "JobApplicationDTO [jobId=" + jobId + ", coverLetter=" + coverLetter + ", freelancerId=" + freelancerId
+				+ "]";
+	}
 	
 
 }

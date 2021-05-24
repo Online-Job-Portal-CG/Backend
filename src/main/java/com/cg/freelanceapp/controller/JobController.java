@@ -104,7 +104,7 @@ public class JobController {
 
 	@PostMapping("/postJob")
 	public ResponseEntity<Object> job(@RequestBody JobDTO jobDto) {
-
+		System.out.println(jobDto);
 		jobService.postJob(jobDto);
 		return new ResponseEntity<>("Job Posted Successfully", HttpStatus.OK);
 	}

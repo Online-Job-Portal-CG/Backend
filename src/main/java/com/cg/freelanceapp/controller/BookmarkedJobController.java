@@ -123,9 +123,10 @@ public class BookmarkedJobController {
 		}
 	}
 
-	@GetMapping("findAll")
-	public ResponseEntity<Object> findAll() {
-		return new ResponseEntity<>(bookmarkedJobService.findAllBookmarks(), HttpStatus.OK);
+	@GetMapping("findAll/{frId}")
+	public ResponseEntity<Object> findAll(@PathVariable Long frId) {
+		System.out.println(frId);
+		return new ResponseEntity<>(bookmarkedJobService.findAllBookmarks(frId), HttpStatus.OK);
 	}
 
 }

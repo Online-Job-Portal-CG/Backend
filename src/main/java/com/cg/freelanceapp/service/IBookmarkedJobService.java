@@ -19,7 +19,7 @@ public interface IBookmarkedJobService {
 
 	BookmarkedJob findById(Long id);
 	
-	List<BookmarkedJobListDTO> findAllBookmarks();
+	List<BookmarkedJobListDTO> findAllBookmarks(Long frId);
 
 	Long getCurrentId();
 	

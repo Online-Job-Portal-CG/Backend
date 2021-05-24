@@ -3,7 +3,7 @@ package com.cg.freelanceapp.dto;
 import javax.validation.constraints.NotNull;
 
 public class JobDTO {
-	private long freelancerid;
+	private long freelancerid = 2L;
 	@NotNull(message = "skillId cant be null")
 	private long skillId;
 	@NotNull(message = "recruiterid cant be null")
@@ -38,7 +38,7 @@ public class JobDTO {
 	}
 
 	public void setFreelancerid(long freelancerid) {
-		this.freelancerid = freelancerid;
+		this.freelancerid = 2L;
 	}
 
 	public void setRecruiterId(long recruiterId) {
@@ -63,6 +63,12 @@ public class JobDTO {
 
 	public void setJobDescription(String jobDescription) {
 		this.jobDescription = jobDescription;
+	}
+
+	@Override
+	public String toString() {
+		return "JobDTO [freelancerid=" + freelancerid + ", skillId=" + skillId + ", recruiterId=" + recruiterId
+				+ ", jobTitle=" + jobTitle + ", jobDescription=" + jobDescription + "]";
 	}
 
 }
